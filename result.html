@@ -50,21 +50,18 @@
   .wheel-svg-wrap{width:100%;max-width:420px;margin:0 auto;}
   .wheel-svg-wrap svg{width:100%;height:auto;display:block;}
 
-  .book-case{background:var(--forest);color:var(--cream);border-radius:14px;padding:28px 26px;margin-top:34px;}
-  .book-case-grid{display:grid;grid-template-columns:140px 1fr;gap:22px;align-items:center;}
-  .book-cover{width:150px;max-width:42vw;height:auto;display:block;filter:drop-shadow(0 14px 28px rgba(0,0,0,.40));}
-  .book-case h3{font-size:22px;margin:0 0 10px;color:var(--cream);}
-  .book-case p{font-size:15.5px;margin:0 0 12px;opacity:.92;}
-  .book-case ul{margin:0 0 16px;padding-left:1.15em;opacity:.92;font-size:15px;}
-  .book-case li{margin-bottom:6px;}
-  .book-case .btn{background:var(--gold);color:var(--ink);}
+  .book-case{background:var(--forest);color:var(--cream);border-radius:14px;padding:26px 22px;margin-top:34px;}
+  .book-case-grid{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center;}
+  .book-cover{width:110px;max-width:30vw;height:auto;display:block;filter:drop-shadow(0 12px 24px rgba(0,0,0,.40));}
+  .book-case h3{font-size:20px;margin:0 0 8px;color:var(--cream);line-height:1.2;}
+  .book-case p{font-size:15px;margin:0 0 10px;opacity:.92;line-height:1.45;}
+  .book-case .btn{background:var(--gold);color:var(--ink);margin-top:4px;}
   .book-case .btn:hover{background:var(--gold-soft);}
-  .book-case .btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:4px;}
-  .book-case .fine{font-size:13px;opacity:.75;margin:10px 0 0;}
   @media(max-width:520px){
-    .book-case-grid{grid-template-columns:1fr;justify-items:center;text-align:center;}
-    .book-case ul{text-align:left;}
-    .book-case .btn-row{justify-content:center;}
+    .book-case-grid{grid-template-columns:90px 1fr;gap:14px;text-align:left;}
+    .book-cover{width:90px;}
+    .book-case h3{font-size:18px;}
+    .book-case p{font-size:14.5px;}
   }
 
   .email-gate{background:var(--cream-card);border:2px dashed var(--line);border-radius:14px;
@@ -108,19 +105,12 @@
 
     <div class="book-case">
       <div class="book-case-grid">
-        <img class="book-cover" src="cover-transparent.png" width="140" height="210" alt="Back to School for Parents book cover">
+        <img class="book-cover" src="cover-transparent.png" width="110" height="154" alt="Back to School for Parents book cover">
         <div>
-          <h3>Ready for the full map?</h3>
+          <h3>This is fixable</h3>
           <p id="nextStepCopy"></p>
-          <p><b>Back to School for Parents</b> by Joe &amp; Lori Miller walks all ten areas, gives you a private 1–10 baseline (different from this scan), and includes the 30-Day Parent Reset.</p>
-          <ul>
-            <li>Paperback on Amazon or digital (PDF + EPUB) on Gumroad</li>
-            <li>Optional Fresh Start bundle available if you want extra support tools</li>
-          </ul>
-          <div class="btn-row">
-            <a class="btn" href="https://millermhs.com/press/back-to-school-for-parents/" target="_blank" rel="noopener">See the book &amp; choose your format</a>
-          </div>
-          <p class="fine">You’ll pick Amazon or Gumroad on the next page. Free companion downloads come with the book.</p>
+          <p><b>Back to School for Parents</b> is the answer for this leak — and the map for the other nine areas, with a private baseline and the 30-Day Reset.</p>
+          <a class="btn" href="https://millermhs.com/press/back-to-school-for-parents/" target="_blank" rel="noopener">Get the book</a>
         </div>
       </div>
     </div>
@@ -169,61 +159,61 @@ const INTERP = {
       "That's why a short night can turn a small moment into a flashpoint you regret by lunch. It isn't a character flaw. It's a tired brain doing exactly what tired brains do.",
       "The good news is that sleep isn't a destination you have to reach. It's a habit you can rebuild, and it tends to lift the other nine areas along with it."],
     move:"First move this week: pick a realistic bedtime and defend it for fourteen nights, the same way you defend your kids'.",
-    next:"Sleep & Recovery is usually the foundation everything else rests on. The book walks that chapter with a wind-down ritual, the constructive-worry fix for the racing 11 p.m. brain, and how to protect a window that survives real family life."},
+    next:"Sleep is the leak making everything else heavier. The book shows how to protect it in real family life."},
   physical:{sub:"The body keeps the score, and it's usually the first thing a parent sacrifices.",
     body:["Physical health is the most concrete of the ten areas, and it's the easiest to quietly hand over. Skipped meals, postponed appointments, an exercise routine that fell off a cliff after the second kid. The body just keeps functioning under the load, until it doesn't.",
       "But your energy, your patience, your mood, and your ability to stay steady all run downstream of it. When you're running on fumes, being emotionally available is the last thing that feels possible.",
       "And your kids are watching. A parent who moves and takes care of their own body is teaching a silent curriculum about self-respect that no lecture can match."],
     move:"First move this week: schedule one overdue appointment, and put three short walks on the calendar.",
-    next:"The book's Physical Health chapter treats movement as flexible and non-negotiable — not a perfect gym schedule — plus strength, nutrition, and the hormonal shifts nobody warned you about."},
+    next:"Your body is the leak draining your patience and energy. The book rebuilds that foundation without a perfect gym plan."},
   mental:{sub:"Your old coping skills were never built for this much load.",
     body:["Most parents we see aren't broken. They're good people whose coping skills got completely overrun. The strategies that carried you through your twenties simply weren't designed for chronic partial attention, constant interruption, and stakes this high.",
       "So you react in ways you don't like, go quiet when you should speak, or flood when you'd rather stay steady, and then feel worse for it. That loop is exhausting, and it's incredibly common.",
       "Mental health isn't a luxury you get to when there's a crisis. It's the ongoing maintenance of the internal system that lets you respond instead of react."],
     move:"First move this week: name one feeling out loud to someone. \"I'm feeling overwhelmed\" is a complete sentence.",
-    next:"The book's Mental Health chapter covers catching thinking errors, the coping strategies that work until they don't, and when it's time to bring in professional support — without any of it feeling like homework."},
+    next:"Your coping system is overrun. The book gives practical ways to respond instead of react — without homework vibes."},
   financial:{sub:"Money stress taxes the exact bandwidth you need for everything else.",
     body:["Financial clarity isn't really about getting wealthy. It's about lowering the ambient dread so money stops occupying mental space you need for parenting, work, and problem-solving.",
       "When money is a constant background hum, you're doing everything with fewer cognitive resources than you actually have. And the avoidance makes it worse, because unopened mail and unlooked-at balances keep the vague dread running on a loop.",
       "There's usually a story underneath it too, a money script you absorbed long before you had any money of your own. Naming it is the first move toward deciding whether it still serves you."],
     move:"First move this week: open the thing you've been avoiding. Just look. Clarity almost always lowers the load.",
-    next:"The book's Financial Clarity chapter unpacks money scripts, the spending-as-coping loop, and how to get your numbers in reasonable order — because this was never really about money. It's about the climate of your home."},
+    next:"Money stress is taxing the bandwidth you need for parenting. The book clears the dread so you can think again."},
   career:{sub:"Your own growth quietly went on hold, and you're not sure when.",
     body:["For a lot of parents, career stops being something they steer and becomes something that just happens to them. The growth, the goals, the sense of going somewhere you actually chose, all of it slid onto the back burner while you kept everyone else moving forward.",
       "That matters more than it looks, because work you feel stuck in follows you home, and the inability to leave it at the door eats into the presence you want with your family.",
       "This isn't about climbing or hustling harder. It's about whether the biggest chunk of your waking hours still feels like it's yours."],
     move:"First move this week: name one small thing that would make work feel more like yours, and take a single step toward it.",
-    next:"The book's Career & Professional Growth chapter is about reclaiming direction in your work without it costing you the family time it's supposed to support."},
+    next:"Work that doesn’t feel like yours follows you home. The book helps you reclaim direction without costing family time."},
   partnership:{sub:"Somewhere in the logistics, the relationship became a to-do list.",
     body:["When you're deep in parenting, it's easy for the partnership to shrink down to a scheduling meeting — who's doing pickup, who's handling dinner, who's on bedtime. The connection that started the whole thing gets deferred, again and again, until the distance is its own quiet problem.",
       "And unaddressed tension doesn't disappear. It settles in, and the kids feel the climate even when nothing is said out loud.",
       "The goal isn't a perfect relationship. It's getting back on the same team, so you're facing the hard stuff together instead of across from each other."],
     move:"First move this week: have one ten-minute conversation that isn't about logistics or the kids.",
-    next:"The book's Partnership chapter is built for married and co-parenting readers — logistics versus connection, and how to deal with tension before it calcifies."},
+    next:"The relationship became logistics. The book gets you back on the same team."},
   presence:{sub:"You're there all the time, but 'present' is a different thing.",
     body:["There's a specific ache in realizing you were in the room but not really with your kids — physically present, mentally somewhere else, phone in hand. It's one of the most common regrets parents bring us, and one of the most fixable.",
       "Parenting on autopilot and reaction is what happens when every other area is depleted. Presence is usually the thing that gets crowded out first, not because you don't care, but because there's nothing left.",
       "The encouraging part: presence doesn't require more hours. It requires a little less depletion in the areas feeding into it."],
     move:"First move this week: give one child ten minutes of unhurried, phone-down attention.",
-    next:"The book's Intentional Parenting & Presence chapter is about parenting on purpose instead of on autopilot — and how it connects to the areas quietly stealing your attention."},
+    next:"You’re there, but not present. The book reconnects presence to the areas quietly stealing it."},
   identity:{sub:"The person you were outside of parenting got a little lost.",
     body:["One of the quieter losses of parenthood is the slow disappearance of the parts of you that have nothing to do with being someone's mom or dad. The interests, the hobbies, the version of you that existed before the backpacks and the pickup line.",
       "It feels selfish to protect that, especially when there's so much to do. But an identity that's collapsed entirely into 'parent' is fragile, and the people who study this find that having more than one thing you draw your sense of self from actually buffers you against stress.",
       "This isn't indulgence. It's part of what makes you a steadier, more whole person to parent from."],
     move:"First move this week: do one small thing that's just for you, unrelated to being a parent.",
-    next:"The book's Personal Interests & Identity chapter makes the case that reclaiming yourself outside of parenting isn't stealing from your kids — it's building the person they get to grow up around."},
+    next:"The you-outside-of-parenting got lost. The book helps you reclaim it — for you and for your kids."},
   social:{sub:"Real connection outside your household got squeezed out.",
     body:["It's easy to go weeks parenting in a kind of isolation — plenty of interaction, very little real connection — with no one outside your household you can actually be honest with.",
       "Loneliness isn't just a mood. It's a genuine health factor, one the research links to outcomes as serious as the physical ones we track more carefully. And parents are especially prone to letting friendships quietly lapse.",
       "The encouraging piece is how little it takes to shift. Reaching out is consistently appreciated more than we expect it to be."],
     move:"First move this week: reach out to one person you've been meaning to. It matters more to them than you think.",
-    next:"The book's Social Connections & Community chapter is about rebuilding the friendships that get quietly deprioritized — and why they're not optional for a parent's wellbeing."},
+    next:"Real connection got squeezed out. The book treats friendship as essential, not optional."},
   home:{sub:"Without rhythm, every day starts as a fresh firefight.",
     body:["When the home has no dependable rhythm, you spend your energy reinventing the same day over and over — the morning scramble, the after-school chaos, the evening collapse into whatever's easiest.",
       "That constant low-grade firefighting is its own drain, and it's the one that makes every other area harder, because there's never any slack in the system.",
       "Good home systems aren't about becoming rigid or over-optimized. They're about removing enough friction that you're not starting from zero at the hardest hours of the day."],
     move:"First move this week: pick your single highest-friction moment and build one small routine around it.",
-    next:"The book's Home Systems & Routines chapter targets the high-friction transitions — mornings, after-school, dinner, bedtime — so the day carries some of the load instead of all of it landing on you."}
+    next:"No rhythm means every day is a firefight. The book builds routines that carry some of the load."}
 };
 
 function parseScores(){
