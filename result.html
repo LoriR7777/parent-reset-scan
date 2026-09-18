@@ -50,19 +50,22 @@
   .wheel-svg-wrap{width:100%;max-width:420px;margin:0 auto;}
   .wheel-svg-wrap svg{width:100%;height:auto;display:block;}
 
-  .book-case{background:var(--forest);color:var(--cream);border-radius:14px;padding:26px 22px;margin-top:34px;}
-  .book-case-grid{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center;}
-  .book-cover{width:110px;max-width:30vw;height:auto;display:block;filter:drop-shadow(0 12px 24px rgba(0,0,0,.40));}
-  .book-case h3{font-size:20px;margin:0 0 8px;color:var(--cream);line-height:1.2;}
-  .book-case p{font-size:15px;margin:0 0 10px;opacity:.92;line-height:1.45;}
+  .book-case{background:var(--forest);color:var(--cream);border-radius:14px;padding:28px 24px;margin-top:34px;}
+  .book-case-grid{display:grid;grid-template-columns:190px 1fr;gap:24px;align-items:center;}
+  .book-cover{width:190px;height:auto;display:block;filter:drop-shadow(0 16px 28px rgba(0,0,0,.45));background:transparent;}
+  .book-case h3{font-size:28px;margin:0 0 10px;color:var(--cream);line-height:1.15;letter-spacing:-.01em;}
+  .book-case p{font-size:15px;margin:0 0 12px;opacity:.92;line-height:1.45;}
   .book-case .btn{background:var(--gold);color:var(--ink);margin-top:4px;}
   .book-case .btn:hover{background:var(--gold-soft);}
-  @media(max-width:520px){
-    .book-case-grid{grid-template-columns:90px 1fr;gap:14px;text-align:left;}
-    .book-cover{width:90px;}
-    .book-case h3{font-size:18px;}
-    .book-case p{font-size:14.5px;}
+  @media(max-width:560px){
+    .book-case{padding:24px 18px;}
+    .book-case-grid{grid-template-columns:1fr;gap:16px;justify-items:center;text-align:center;}
+    .book-cover{width:min(220px,58vw);}
+    .book-case h3{font-size:26px;}
+    .book-case p{font-size:15px;text-align:left;}
+    .book-case .btn{width:100%;text-align:center;box-sizing:border-box;}
   }
+
 
   .email-gate{background:var(--cream-card);border:2px dashed var(--line);border-radius:14px;
     padding:26px 24px;margin-top:22px;text-align:center;}
@@ -105,11 +108,11 @@
 
     <div class="book-case">
       <div class="book-case-grid">
-        <img class="book-cover" src="cover-transparent.png" width="110" height="154" alt="Back to School for Parents book cover">
-        <div>
+        <img class="book-cover" src="cover-transparent.png" width="190" height="266" alt="Back to School for Parents book cover">
+        <div class="book-case-copy">
           <h3>This is fixable</h3>
           <p id="nextStepCopy"></p>
-          <p><b>Back to School for Parents</b> is the answer for this leak — and the map for the other nine areas, with a private baseline and the 30-Day Reset.</p>
+          <p><b>Back to School for Parents: 10 Essential Areas For Your Own Fresh Start</b> is the answer for this leak — and the map for the other nine areas, with a private baseline and a 30-Day Reset.</p>
           <a class="btn" href="https://millermhs.com/press/back-to-school-for-parents/" target="_blank" rel="noopener">Get the book</a>
         </div>
       </div>
