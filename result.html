@@ -270,7 +270,7 @@ function renderWheel(leakI){
     const a1 = a0 + slice;
     const mid = a0 + slice / 2;
     const isLeak = i === leakI;
-    const fill = isLeak ? '#e8b23a' : '#fbf8f0';
+    const fill = isLeak ? var(--gold) : '#fbf8f0';
     const stroke = isLeak ? '#d4a02e' : '#c8c0a8';
     wedges += `<path d="${wedgePath(cx,cy,rOuter,rInner,a0,a1)}" fill="${fill}" stroke="${stroke}" stroke-width="1.5"/>`;
 
