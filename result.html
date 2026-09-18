@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Parent Reset Scan Result</title>
+<style>
+  :root{
+    --forest:#2f5233;--forest-soft:#3f6b45;--cream:#f7f3e8;--cream-card:#fbf8f0;
+    --ink:#20301f;--ink-soft:#4a5a48;--gold:#e8b23a;--gold-soft:#f2d489;
+    --line:#d9d2be;--clay:#c96a4b;--shadow:rgba(35,54,33,.10);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--cream);color:var(--ink);
+    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:680px;margin:0 auto;padding:36px 22px 80px;}
+  .result-kicker,.leak-name,.score-num,.section-title,.eyebrow,.btn,.bar-val,.next-step h3{
+    font-family:"Helvetica Neue",Arial,sans-serif;}
+  .btn{display:inline-block;border:none;cursor:pointer;background:var(--forest);color:var(--cream);
+    font-size:16px;font-weight:700;letter-spacing:.02em;padding:15px 30px;border-radius:9px;
+    transition:background .15s ease,transform .05s ease;text-decoration:none;}
+  .btn:hover{background:var(--forest-soft);}
+  .btn:active{transform:translateY(1px);}
+  .btn-ghost{background:transparent;color:var(--forest);border:2px solid var(--line);}
+  .btn-ghost:hover{background:#efe9d8;}
+  .fineprint{font-size:14px;color:var(--ink-soft);}
+  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--forest-soft);font-weight:700;}
+
+  .report-head{text-align:center;margin-bottom:8px;}
+  .result-kicker{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--forest-soft);font-weight:700;margin-bottom:14px;}
+  .leak-name{font-size:34px;font-weight:800;color:var(--forest);line-height:1.1;margin:0 0 6px;letter-spacing:-.01em;}
+  .leak-sub{font-size:17px;color:var(--ink-soft);margin:0 auto 30px;max-width:520px;}
+  .score-band{display:flex;align-items:center;justify-content:center;gap:18px;
+    background:var(--forest);color:var(--cream);border-radius:14px;padding:22px 26px;margin:0 0 30px;}
+  .score-num{font-size:52px;font-weight:800;line-height:1;}
+  .score-den{font-size:15px;opacity:.8;}
+  .score-copy{font-size:15px;line-height:1.4;max-width:300px;}
+  .section-title{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--forest-soft);
+    font-weight:700;margin:34px 0 16px;border-bottom:1px solid var(--line);padding-bottom:8px;}
+  .interp{background:var(--cream-card);border:1px solid var(--line);border-left:5px solid var(--gold);
+    border-radius:10px;padding:22px 24px;margin-bottom:16px;}
+  .interp p{margin:0 0 12px;}
+  .interp p:last-child{margin-bottom:0;}
+  .interp .first-move{font-family:"Helvetica Neue",Arial,sans-serif;font-size:14px;color:var(--forest);font-weight:700;}
+  .wheel-wrap{display:flex;flex-direction:column;gap:9px;margin:6px 0 8px;}
+  .bar-row{display:flex;align-items:center;gap:12px;}
+  .bar-label{flex:0 0 42%;font-size:14px;color:var(--ink-soft);}
+  .bar-track{flex:1;height:16px;background:#e6dfca;border-radius:8px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:8px;background:var(--forest-soft);}
+  .bar-fill.low{background:var(--clay);}
+  .bar-fill.high{background:var(--forest);}
+  .bar-val{flex:0 0 30px;text-align:right;font-size:13px;font-weight:700;color:var(--ink-soft);}
+  .strength-note{font-size:16px;color:var(--ink-soft);margin:14px 0 0;}
+  .strength-note b{color:var(--forest);}
+  .next-step{background:var(--forest);color:var(--cream);border-radius:14px;padding:28px 26px;margin-top:34px;}
+  .next-step h3{font-size:22px;margin:0 0 12px;color:var(--cream);}
+  .next-step p{font-size:15.5px;margin:0 0 18px;opacity:.92;}
+  .next-step .btn{background:var(--gold);color:var(--ink);}
+  .next-step .btn:hover{background:var(--gold-soft);}
+  .email-gate{background:var(--cream-card);border:2px dashed var(--line);border-radius:14px;
+    padding:26px 24px;margin-top:22px;text-align:center;}
+  .email-gate input{width:100%;max-width:340px;padding:13px 15px;font-size:16px;border:2px solid var(--line);
+    border-radius:9px;margin:12px 0;font-family:inherit;}
+  .email-gate input:focus{outline:none;border-color:var(--forest-soft);}
+  .restart{display:block;margin:34px auto 0;}
+  .demo-tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#b4a97f;text-align:center;margin-top:40px;font-family:"Helvetica Neue",Arial,sans-serif;}
+  .err{text-align:center;padding:60px 20px;}
+  .hidden{display:none;}
+  @media(max-width:520px){
+    .leak-name{font-size:27px;}
+    .score-band{flex-direction:column;text-align:center;gap:8px;}
+    .bar-label{flex-basis:50%;font-size:13px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section id="report" class="hidden">
+    <div class="report-head">
+      <p class="result-kicker">Your biggest leak right now</p>
+      <h2 class="leak-name" id="leakName"></h2>
+      <p class="leak-sub" id="leakSub"></p>
+    </div>
+
+    <div class="score-band">
+      <div><span class="score-num" id="overallNum">0</span><span class="score-den"> / 100</span></div>
+      <div class="score-copy" id="overallCopy"></div>
+    </div>
+
+    <p class="section-title">Why this one, and not the others</p>
+    <div class="interp" id="leakInterp"></div>
+
+    <p class="section-title">How the ten areas stack up for you</p>
+    <div class="wheel-wrap" id="wheel"></div>
+    <p class="strength-note" id="strengthNote"></p>
+
+    <div class="next-step">
+      <h3>So what do you actually do about it?</h3>
+      <p id="nextStepCopy"></p>
+      <a class="btn" href="https://www.amazon.com/Back-School-Parents-Essential-Areas/dp/1736549278" target="_blank" rel="noopener">Get the book on Amazon</a>
+    </div>
+
+    <div class="email-gate">
+      <p class="eyebrow">Keep this result</p>
+      <p style="margin:6px 0 0;font-size:15.5px;color:var(--ink-soft);">We'll email you a link back to this exact result, plus a short note on where to start. No spam, and we won't barrage your inbox.</p>
+      <input type="email" placeholder="your@email.com" id="emailField">
+      <br>
+      <button class="btn" onclick="submitEmail()">Email me my result</button>
+      <p class="fineprint" id="gateMsg" style="margin-top:12px;"></p>
+    </div>
+
+    <a class="btn btn-ghost restart" href="index.html">Take the scan again</a>
+    <p class="demo-tag">Prototype &mdash; result rendered from the link</p>
+  </section>
+
+  <section id="noResult" class="hidden">
+    <div class="err">
+      <h2 style="color:var(--forest);font-family:'Helvetica Neue',Arial,sans-serif;">No result to show yet</h2>
+      <p class="fineprint">This page displays your scan result. Take the scan to see yours.</p>
+      <a class="btn" href="index.html" style="margin-top:16px;">Start the scan</a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+/* AREAS order MUST match scan.html exactly. Scores arrive positionally in ?s= */
+const AREAS = [
+  {key:"physical",   name:"Physical Health & Movement"},
+  {key:"sleep",      name:"Sleep & Recovery"},
+  {key:"mental",     name:"Mental Health & Stress Management"},
+  {key:"financial",  name:"Financial Clarity & Planning"},
+  {key:"career",     name:"Career & Professional Growth"},
+  {key:"partnership",name:"Partnership & Marriage (or Co-Parenting)"},
+  {key:"presence",   name:"Intentional Parenting & Presence"},
+  {key:"identity",   name:"Personal Interests, Hobbies & Identity"},
+  {key:"social",     name:"Social Connections & Community"},
+  {key:"home",       name:"Home Systems, Routines & Time Management"}
+];
+
+const INTERP = {
+  sleep:{sub:"When sleep goes unprotected, everything else gets harder to carry.",
+    body:["Here's the part most tired parents miss: you're not just more irritable when you're underslept. Your brain is literally misreading the room. Sleep loss puts your threat detector on high alert and weakens the part of your brain that keeps it in check, so an ordinary bit of whining or a neutral comment from your partner lands as a provocation.",
+      "That's why a short night can turn a small moment into a flashpoint you regret by lunch. It isn't a character flaw. It's a tired brain doing exactly what tired brains do.",
+      "The good news is that sleep isn't a destination you have to reach. It's a habit you can rebuild, and it tends to lift the other nine areas along with it."],
+    move:"First move this week: pick a realistic bedtime and defend it for fourteen nights, the same way you defend your kids'.",
+    next:"Sleep & Recovery is the foundation almost everything else rests on. It's one of the ten areas the book walks you through, with a full wind-down ritual, the constructive-worry fix for the racing 11 p.m. brain, and how to protect a window that survives real family life."},
+  physical:{sub:"The body keeps the score, and it's usually the first thing a parent sacrifices.",
+    body:["Physical health is the most concrete of the ten areas, and it's the easiest to quietly hand over. Skipped meals, postponed appointments, an exercise routine that fell off a cliff after the second kid. The body just keeps functioning under the load, until it doesn't.",
+      "But your energy, your patience, your mood, and your ability to stay steady all run downstream of it. When you're running on fumes, being emotionally available is the last thing that feels possible.",
+      "And your kids are watching. A parent who moves and takes care of their own body is teaching a silent curriculum about self-respect that no lecture can match."],
+    move:"First move this week: schedule one overdue appointment, and put three short walks on the calendar.",
+    next:"The book's chapter on Physical Health treats movement as flexible and non-negotiable, not a perfect gym schedule, plus how to think about strength, nutrition, and the hormonal shifts nobody warned you about."},
+  mental:{sub:"Your old coping skills were never built for this much load.",
+    body:["Most parents we see aren't broken. They're good people whose coping skills got completely overrun. The strategies that carried you through your twenties simply weren't designed for chronic partial attention, constant interruption, and stakes this high.",
+      "So you react in ways you don't like, go quiet when you should speak, or flood when you'd rather stay steady, and then feel worse for it. That loop is exhausting, and it's incredibly common.",
+      "Mental health isn't a luxury you get to when there's a crisis. It's the ongoing maintenance of the internal system that lets you respond instead of react."],
+    move:"First move this week: name one feeling out loud to someone. \"I'm feeling overwhelmed\" is a complete sentence.",
+    next:"The book's Mental Health chapter covers catching thinking errors, the coping strategies that work until they don't, and when it's time to bring in professional support, without any of it feeling like homework."},
+  financial:{sub:"Money stress taxes the exact bandwidth you need for everything else.",
+    body:["Financial clarity isn't really about getting wealthy. It's about lowering the ambient dread so money stops occupying mental space you need for parenting, work, and problem-solving.",
+      "When money is a constant background hum, you're doing everything with fewer cognitive resources than you actually have. And the avoidance makes it worse, because unopened mail and unlooked-at balances keep the vague dread running on a loop.",
+      "There's usually a story underneath it too, a money script you absorbed long before you had any money of your own. Naming it is the first move toward deciding whether it still serves you."],
+    move:"First move this week: open the thing you've been avoiding. Just look. Clarity almost always lowers the load.",
+    next:"The book's Financial Clarity chapter unpacks money scripts, the spending-as-coping loop, and how to get your numbers in reasonable order, because this was never really about money. It's about the climate of your home."},
+  career:{sub:"Your own growth quietly went on hold, and you're not sure when.",
+    body:["For a lot of parents, career stops being something they steer and becomes something that just happens to them. The growth, the goals, the sense of going somewhere you actually chose, all of it slid onto the back burner while you kept everyone else moving forward.",
+      "That matters more than it looks, because work you feel stuck in follows you home, and the inability to leave it at the door eats into the presence you want with your family.",
+      "This isn't about climbing or hustling harder. It's about whether the biggest chunk of your waking hours still feels like it's yours."],
+    move:"First move this week: name one small thing that would make work feel more like yours, and take a single step toward it.",
+    next:"The book's chapter on Career & Professional Growth is about reclaiming a sense of direction in your work without it costing you the family time it's supposed to support."},
+  partnership:{sub:"Somewhere in the logistics, the relationship became a to-do list.",
+    body:["When you're deep in parenting, it's easy for the partnership to shrink down to a scheduling meeting, who's doing pickup, who's handling dinner, who's on bedtime. The connection that started the whole thing gets deferred, again and again, until the distance is its own quiet problem.",
+      "And unaddressed tension doesn't disappear. It settles in, and the kids feel the climate even when nothing is said out loud.",
+      "The goal isn't a perfect relationship. It's getting back on the same team, so you're facing the hard stuff together instead of across from each other."],
+    move:"First move this week: have one ten-minute conversation that isn't about logistics or the kids.",
+    next:"The book's Partnership chapter is built for both married and co-parenting readers, with the difference between logistics and connection, and how to deal with tension before it calcifies."},
+  presence:{sub:"You're there all the time, but 'present' is a different thing.",
+    body:["There's a specific ache in realizing you were in the room but not really with your kids, physically present, mentally somewhere else, phone in hand. It's one of the most common regrets parents bring us, and one of the most fixable.",
+      "Parenting on autopilot and reaction is what happens when every other area is depleted. Presence is usually the thing that gets crowded out first, not because you don't care, but because there's nothing left.",
+      "The encouraging part: presence doesn't require more hours. It requires a little less depletion in the areas feeding into it."],
+    move:"First move this week: give one child ten minutes of unhurried, phone-down attention.",
+    next:"The book's chapter on Intentional Parenting & Presence is about parenting on purpose instead of on autopilot, and it connects directly to the areas quietly stealing your attention."},
+  identity:{sub:"The person you were outside of parenting got a little lost.",
+    body:["One of the quieter losses of parenthood is the slow disappearance of the parts of you that have nothing to do with being someone's mom or dad. The interests, the hobbies, the version of you that existed before the backpacks and the pickup line.",
+      "It feels selfish to protect that, especially when there's so much to do. But an identity that's collapsed entirely into 'parent' is fragile, and the people who study this find that having more than one thing you draw your sense of self from actually buffers you against stress.",
+      "This isn't indulgence. It's part of what makes you a steadier, more whole person to parent from."],
+    move:"First move this week: do one small thing that's just for you, unrelated to being a parent.",
+    next:"The book's chapter on Personal Interests & Identity makes the case that reclaiming yourself outside of parenting isn't stealing from your kids, it's building the person they get to grow up around."},
+  social:{sub:"Real connection outside your household got squeezed out.",
+    body:["It's easy to go weeks parenting in a kind of isolation, plenty of interaction, very little real connection, with no one outside your household you can actually be honest with.",
+      "Loneliness isn't just a mood. It's a genuine health factor, one the research links to outcomes as serious as the physical ones we track more carefully. And parents are especially prone to letting friendships quietly lapse.",
+      "The encouraging piece is how little it takes to shift. Reaching out is consistently appreciated more than we expect it to be."],
+    move:"First move this week: reach out to one person you've been meaning to. It matters more to them than you think.",
+    next:"The book's chapter on Social Connections & Community is about rebuilding the connections that get quietly deprioritized, and why they're not optional for a parent's wellbeing."},
+  home:{sub:"Without rhythm, every day starts as a fresh firefight.",
+    body:["When the home has no dependable rhythm, you spend your energy reinventing the same day over and over, the morning scramble, the after-school chaos, the evening collapse into whatever's easiest.",
+      "That constant low-grade firefighting is its own drain, and it's the one that makes every other area harder, because there's never any slack in the system.",
+      "Good home systems aren't about becoming rigid or over-optimized. They're about removing enough friction that you're not starting from zero at the hardest hours of the day."],
+    move:"First move this week: pick your single highest-friction moment and build one small routine around it.",
+    next:"The book's chapter on Home Systems & Routines targets the high-friction transitions, mornings, after-school, dinner, bedtime, so the day carries some of the load instead of all of it landing on you."}
+};
+
+function parseScores(){
+  const p = new URLSearchParams(window.location.search).get('s');
+  if(!p) return null;
+  const arr = p.split(',').map(n=>parseInt(n,10));
+  if(arr.length !== AREAS.length || arr.some(n=>isNaN(n)||n<0||n>10)) return null;
+  return arr;
+}
+
+function overallCopy(n){
+  if(n>=75) return "You're tending to yourself better than most parents in this season. This scan is about protecting that, and shoring up the one soft spot.";
+  if(n>=50) return "You're holding a lot together and it's working, mostly. There's one area quietly costing you more than the others.";
+  if(n>=30) return "You're running closer to empty than you'd probably admit out loud. The good news: you don't fix ten things. You start with one.";
+  return "You're deep in survival mode right now, and that's information, not judgment. The one area below is the place to start, not all of it at once.";
+}
+
+function render(){
+  const scores = parseScores();
+  if(!scores){ document.getElementById('noResult').classList.remove('hidden'); return; }
+  document.getElementById('report').classList.remove('hidden');
+
+  // biggest leak = lowest (ties -> earliest in book order); strongest = highest
+  let leakI=0, best=0;
+  scores.forEach((v,i)=>{ if(v<scores[leakI]) leakI=i; if(v>scores[best]) best=i; });
+  const leakKey = AREAS[leakI].key;
+  const copy = INTERP[leakKey];
+  const overall = Math.round(scores.reduce((s,n)=>s+n,0)/scores.length*10);
+
+  document.getElementById('leakName').textContent = AREAS[leakI].name;
+  document.getElementById('leakSub').textContent = copy.sub;
+  animateNum(document.getElementById('overallNum'), overall);
+  document.getElementById('overallCopy').textContent = overallCopy(overall);
+  document.getElementById('leakInterp').innerHTML =
+    copy.body.map(p=>`<p>${p}</p>`).join('') + `<p class="first-move">${copy.move}</p>`;
+
+  const wheel=document.getElementById('wheel'); wheel.innerHTML='';
+  AREAS.forEach((a,i)=>{
+    const v=scores[i]; const cls = v<=3?'low':(v>=7?'high':'');
+    wheel.innerHTML += `<div class="bar-row">
+      <div class="bar-label">${a.name}</div>
+      <div class="bar-track"><div class="bar-fill ${cls}" style="width:${v*10}%"></div></div>
+      <div class="bar-val">${v}</div></div>`;
+  });
+
+  document.getElementById('strengthNote').innerHTML =
+    `Your steadiest area right now is <b>${AREAS[best].name}</b>. That's real, and worth protecting. It's often the thing you can lean on while you tend to the leak above.`;
+  document.getElementById('nextStepCopy').textContent = copy.next;
+}
+
+function animateNum(el,target){
+  let cur=0; const step=Math.max(1,Math.round(target/30));
+  const t=setInterval(()=>{cur+=step;if(cur>=target){cur=target;clearInterval(t);}el.textContent=cur;},22);
+}
+
+function submitEmail(){
+  const email=document.getElementById('emailField').value.trim();
+  const msg=document.getElementById('gateMsg');
+  if(!email||!email.includes('@')){msg.style.color='var(--clay)';msg.textContent="Enter a valid email so we can send your result.";return;}
+  /* PRODUCTION: POST { email, leak, resultUrl } to your serverless function,
+     which writes the contact + merge fields to Mailchimp. resultUrl is just
+     this page's current URL, so the email button reopens this exact result. */
+  msg.style.color='var(--forest)';
+  msg.textContent="In the real version this sends your email + result link to Mailchimp. (Prototype: nothing was sent.)";
+  document.getElementById('emailField').value='';
+}
+
+render();
+</script>
+</body>
+</html>
