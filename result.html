@@ -51,14 +51,21 @@
   .wheel-svg-wrap svg{width:100%;height:auto;display:block;}
 
   .book-case{background:var(--forest);color:var(--cream);border-radius:14px;padding:28px 26px;margin-top:34px;}
-  .book-case h3{font-size:22px;margin:0 0 12px;color:var(--cream);}
-  .book-case p{font-size:15.5px;margin:0 0 14px;opacity:.92;}
-  .book-case ul{margin:0 0 18px;padding-left:1.15em;opacity:.92;font-size:15.5px;}
-  .book-case li{margin-bottom:8px;}
+  .book-case-grid{display:grid;grid-template-columns:140px 1fr;gap:22px;align-items:center;}
+  .book-cover{width:140px;height:auto;border-radius:4px;box-shadow:0 12px 28px rgba(0,0,0,.35);display:block;}
+  .book-case h3{font-size:22px;margin:0 0 10px;color:var(--cream);}
+  .book-case p{font-size:15.5px;margin:0 0 12px;opacity:.92;}
+  .book-case ul{margin:0 0 16px;padding-left:1.15em;opacity:.92;font-size:15px;}
+  .book-case li{margin-bottom:6px;}
   .book-case .btn{background:var(--gold);color:var(--ink);}
   .book-case .btn:hover{background:var(--gold-soft);}
-  .book-case .btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
-  .book-case a.secondary{color:var(--gold-soft);font-family:"Helvetica Neue",Arial,sans-serif;font-size:14px;font-weight:600;}
+  .book-case .btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:4px;}
+  .book-case .fine{font-size:13px;opacity:.75;margin:10px 0 0;}
+  @media(max-width:520px){
+    .book-case-grid{grid-template-columns:1fr;justify-items:center;text-align:center;}
+    .book-case ul{text-align:left;}
+    .book-case .btn-row{justify-content:center;}
+  }
 
   .email-gate{background:var(--cream-card);border:2px dashed var(--line);border-radius:14px;
     padding:26px 24px;margin-top:22px;text-align:center;}
@@ -100,17 +107,21 @@
     </div>
 
     <div class="book-case">
-      <h3>What to do with this</h3>
-      <p id="nextStepCopy"></p>
-      <p><b>Back to School for Parents</b> by Joe &amp; Lori Miller is the full map. The scan you just took names one current leak. The book is where you work the whole picture:</p>
-      <ul>
-        <li>All ten areas, with practical strategies for each</li>
-        <li>A private 1–10 baseline assessment (different from this scan) so you can see your own numbers</li>
-        <li>The 30-Day Parent Reset to shore up the areas that need you most</li>
-      </ul>
-      <div class="btn-row">
-        <a class="btn" href="https://www.amazon.com/Back-School-Parents-Essential-Areas/dp/1736549278" target="_blank" rel="noopener">Get the book on Amazon</a>
-        <a class="secondary" href="https://millermhs.com/bts" target="_blank" rel="noopener">Free scorecard &amp; reset downloads →</a>
+      <div class="book-case-grid">
+        <img class="book-cover" src="cover.png" width="140" height="210" alt="Back to School for Parents book cover">
+        <div>
+          <h3>Ready for the full map?</h3>
+          <p id="nextStepCopy"></p>
+          <p><b>Back to School for Parents</b> by Joe &amp; Lori Miller walks all ten areas, gives you a private 1–10 baseline (different from this scan), and includes the 30-Day Parent Reset.</p>
+          <ul>
+            <li>Paperback on Amazon or digital (PDF + EPUB) on Gumroad</li>
+            <li>Optional Fresh Start bundle available if you want extra support tools</li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn" href="https://millermhs.com/press/back-to-school-for-parents/" target="_blank" rel="noopener">See the book &amp; choose your format</a>
+          </div>
+          <p class="fine">You’ll pick Amazon or Gumroad on the next page. Free companion downloads come with the book.</p>
+        </div>
       </div>
     </div>
 
