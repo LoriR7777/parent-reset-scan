@@ -4,139 +4,361 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Your Parent Report Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --forest:#2f5233;--forest-soft:#3f6b45;--cream:#f7f3e8;--cream-card:#fbf8f0;
-    --ink:#20301f;--ink-soft:#4a5a48;--gold:#e8b23a;--gold-soft:#f2d489;
-    --line:#d9d2be;--shadow:rgba(35,54,33,.10);
-    --bus-yellow:#F5C518;--leaf-green:#3C6B45;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{background:var(--cream);color:var(--ink);
-    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:680px;margin:0 auto;padding:36px 22px 80px;}
-  .result-kicker,.headline,.section-title,.eyebrow,.btn,.book-case h3,.practice-label{
-    font-family:"Helvetica Neue",Arial,sans-serif;}
-  .btn{display:inline-block;border:none;cursor:pointer;background:var(--forest);color:var(--cream);
-    font-size:16px;font-weight:700;letter-spacing:.02em;padding:15px 30px;border-radius:9px;
-    transition:background .15s ease,transform .05s ease;text-decoration:none;}
-  .btn:hover{background:var(--forest-soft);}
-  .btn:active{transform:translateY(1px);}
-  .btn-ghost{background:transparent;color:var(--forest);border:2px solid var(--line);}
-  .btn-ghost:hover{background:#efe9d8;}
-  .fineprint{font-size:14px;color:var(--ink-soft);}
-  .eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--forest-soft);font-weight:700;}
+:root {
+  --bus-yellow: #F5C518;
+  --bus-yellow-light: #FFD433;
+  --bus-yellow-deep: #C79A05;
+  --sky-blue: #BEDCEE;
+  --sky-blue-light: #DCEBF5;
+  --leaf-green: #3C6B45;
+  --leaf-green-deep: #2F5B3A;
+  --leaf-green-muted: #9FB6A4;
+  --leaf-green-tint: #EDF4EE;
+  --cream: #FBF4E4;
+  --cream-on-green: #F7F3E6;
+  --cream-tint: #FDF7EA;
+  --cream-line: #EFE2C6;
+  --white: #FFFFFF;
+  --card-border: #E6DCC2;
+  --near-black: #171512;
+  --blue-slate: #2C4152;
+  --blue-slate-deep: #1D2E3A;
+  --ink-faint: #B9AE95;
+  --link: #2F6B8F;
+  --link-hover: #1E4C68;
+  --gradient-sky: linear-gradient(var(--sky-blue), var(--sky-blue-light) 70%, var(--cream));
+  --font-display: Oswald, "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+  --shadow-cover: 0 30px 60px rgba(23, 21, 18, 0.28), 0 4px 12px rgba(23, 21, 18, 0.16);
+  --shadow-cover-dark: 0 24px 48px rgba(0, 0, 0, 0.5);
+  --radius-button: 4px;
+  --radius-card: 6px;
+  --radius-cover: 3px;
+  --radius-field: 4px;
+  --button-edge: 4px solid var(--bus-yellow-deep);
+  --transition-button: 120ms linear;
+  --measure-prose: 720px;
+  --measure-hero: 1080px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--cream);
+  color:var(--near-black);
+  font-family:var(--font-body);
+  font-size:19px;
+  line-height:1.65;
+  text-wrap:pretty;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{margin:0;font-family:var(--font-display);font-weight:700;text-transform:uppercase;text-wrap:balance}
+a{color:var(--link)}
+a:hover{color:var(--link-hover)}
+.hidden{display:none}
 
-  .report-head{text-align:center;margin-bottom:8px;}
-  .result-kicker{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--forest-soft);font-weight:700;margin-bottom:14px;}
-  .headline{font-size:34px;font-weight:800;color:var(--forest);line-height:1.1;margin:0 0 18px;letter-spacing:-.01em;}
-  .recog{font-size:17px;color:var(--ink-soft);margin:0 auto 28px;max-width:540px;text-align:left;}
+.hero{
+  background:var(--gradient-sky);
+  padding:56px 24px 56px;
+}
+.hero-inner{max-width:var(--measure-prose);margin:0 auto}
+.eyebrow{
+  font-family:var(--font-display);
+  font-size:13px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--leaf-green-deep);
+  margin:0 0 16px;
+}
+.finding{
+  font-size:clamp(32px, 4.4vw, 54px);
+  line-height:.96;
+  letter-spacing:-.01em;
+  color:var(--near-black);
+  margin:0 0 24px;
+}
+.recog{
+  font-size:clamp(18px, 1.8vw, 20px);
+  line-height:1.5;
+  color:var(--blue-slate);
+  margin:0;
+  max-width:40ch;
+}
 
-  .section-title{font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:var(--forest-soft);
-    font-weight:700;margin:34px 0 16px;border-bottom:1px solid var(--line);padding-bottom:8px;}
+.band{
+  padding:84px 24px;
+}
+.band-inner{max-width:var(--measure-prose);margin:0 auto}
+.section-label{
+  font-family:var(--font-display);
+  font-size:13px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--leaf-green-deep);
+  margin:0 0 24px;
+}
+.signals{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:16px}
+.signals li{
+  background:var(--white);
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-card);
+  padding:22px 24px;
+  display:flex;gap:16px;align-items:flex-start;
+  font-size:18px;line-height:1.45;color:var(--near-black);
+}
+.signals .num{
+  font-family:var(--font-display);
+  font-size:22px;font-weight:700;
+  color:var(--bus-yellow);
+  line-height:1;
+  flex:0 0 auto;
+  letter-spacing:-.01em;
+}
 
-  .signals{list-style:none;padding:0;margin:0;}
-  .signals li{background:var(--cream-card);border:1px solid var(--line);border-left:5px solid var(--gold);
-    border-radius:10px;padding:16px 18px;margin-bottom:12px;font-size:16px;line-height:1.45;color:var(--ink);}
+.bridge-band{
+  background:var(--leaf-green);
+  padding:84px 24px;
+  color:var(--cream-on-green);
+}
+.bridge-band .section-label{color:var(--bus-yellow)}
+.bridge-band h2{
+  font-size:clamp(30px, 4vw, 46px);
+  line-height:1.02;
+  letter-spacing:-.01em;
+  color:var(--bus-yellow);
+  margin:0 0 20px;
+  max-width:18ch;
+}
+.bridge-band p{
+  font-size:19px;
+  line-height:1.55;
+  color:var(--cream-on-green);
+  margin:0 0 16px;
+  max-width:40ch;
+}
+.bridge-band p:last-child{margin-bottom:0}
 
-  .practice{background:var(--cream-card);border:1px solid var(--line);border-radius:14px;padding:24px 22px;margin-bottom:8px;}
-  .practice-label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--forest-soft);font-weight:700;margin:0 0 8px;}
-  .practice h3{font-family:"Helvetica Neue",Arial,sans-serif;font-size:20px;color:var(--forest);margin:0 0 10px;line-height:1.25;}
-  .practice p{margin:0 0 10px;font-size:16px;color:var(--ink);line-height:1.5;}
-  .practice p:last-child{margin-bottom:0;}
-  .practice .note{font-size:14px;color:var(--ink-soft);font-style:italic;}
+.gate-band{padding:84px 24px}
+.gate-card{
+  background:var(--white);
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-card);
+  padding:32px 28px;
+  max-width:var(--measure-prose);
+  margin:0 auto;
+}
+.gate-card h3{
+  font-size:26px;
+  line-height:1.05;
+  letter-spacing:-.01em;
+  color:var(--near-black);
+  margin:0 0 12px;
+}
+.gate-card .gate-copy{
+  font-size:18px;
+  color:var(--blue-slate);
+  margin:0 0 24px;
+  max-width:42ch;
+}
+.gate-form{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.gate-form input{
+  flex:1 1 220px;
+  padding:14px 16px;
+  font-family:var(--font-body);
+  font-size:18px;
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-field);
+  background:var(--cream-tint);
+  color:var(--near-black);
+}
+.gate-form input:focus{
+  outline:2px solid var(--link);
+  outline-offset:2px;
+}
+.btn{
+  display:inline-block;
+  border:none;cursor:pointer;
+  background:var(--bus-yellow);
+  color:var(--near-black);
+  font-family:var(--font-display);
+  font-size:20px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:18px 38px;
+  border-radius:var(--radius-button);
+  border-bottom:var(--button-edge);
+  text-decoration:none;
+  transition:background var(--transition-button);
+  text-align:center;
+}
+.btn:hover{background:var(--bus-yellow-light)}
+.btn-lg{font-size:22px;padding:20px 44px}
+.gate-msg{
+  margin:16px 0 0;
+  font-size:16px;
+  color:var(--blue-slate);
+}
 
-  .book-case{background:var(--forest);color:var(--cream);border-radius:14px;padding:28px 24px;margin-top:34px;}
-  .book-case-grid{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:center;}
-  .book-cover{width:140px;height:auto;display:block;filter:drop-shadow(0 16px 28px rgba(0,0,0,.45));background:transparent;}
-  .book-case h3{font-size:22px;margin:0 0 10px;color:var(--cream);line-height:1.2;letter-spacing:-.01em;}
-  .book-case p{font-size:15px;margin:0 0 12px;opacity:.92;line-height:1.45;}
-  .book-case .btn{background:var(--gold);color:var(--ink);margin-top:4px;}
-  .book-case .btn:hover{background:var(--gold-soft);}
-  @media(max-width:560px){
-    .book-case{padding:24px 18px;}
-    .book-case-grid{grid-template-columns:1fr;gap:16px;justify-items:center;text-align:center;}
-    .book-cover{width:min(180px,50vw);}
-    .book-case h3{font-size:20px;}
-    .book-case p{font-size:15px;text-align:left;}
-    .book-case .btn{width:100%;text-align:center;box-sizing:border-box;}
-  }
+.cta-band{
+  background:var(--near-black);
+  padding:96px 24px 104px;
+  color:var(--cream);
+}
+.cta-inner{
+  max-width:900px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:44px;
+  align-items:center;
+}
+.book-cover{
+  width:160px;height:auto;
+  border-radius:var(--radius-cover);
+  display:block;
+  box-shadow:var(--shadow-cover-dark);
+  background:transparent;
+}
+.cta-copy .eyebrow{color:var(--bus-yellow);margin-bottom:12px}
+.cta-copy h2{
+  font-size:clamp(26px, 2.8vw, 34px);
+  line-height:1.05;
+  letter-spacing:-.01em;
+  color:var(--cream);
+  margin:0 0 12px;
+}
+.cta-copy .authors{
+  font-family:var(--font-display);
+  font-size:14px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--leaf-green-muted);
+  margin:0 0 16px;
+}
+.cta-copy p{
+  font-size:18px;
+  line-height:1.55;
+  color:var(--cream);
+  margin:0 0 28px;
+  max-width:38ch;
+  opacity:.92;
+}
 
-  .email-gate{background:var(--cream-card);border:2px dashed var(--line);border-radius:14px;
-    padding:26px 24px;margin-top:22px;text-align:center;}
-  .email-gate input{width:100%;max-width:340px;padding:13px 15px;font-size:16px;border:2px solid var(--line);
-    border-radius:9px;margin:12px 0;font-family:inherit;}
-  .email-gate input:focus{outline:none;border-color:var(--forest-soft);}
-  .restart{display:block;margin:34px auto 0;text-align:center;width:fit-content;}
-  .demo-tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#b4a97f;text-align:center;margin-top:40px;font-family:"Helvetica Neue",Arial,sans-serif;}
-  .disclaimer{font-size:13px;color:var(--ink-soft);text-align:center;margin-top:28px;line-height:1.45;}
-  .err{text-align:center;padding:60px 20px;}
-  .hidden{display:none;}
-  @media(max-width:520px){
-    .headline{font-size:27px;}
-    .recog{font-size:16px;}
-  }
+.foot{
+  padding:56px 24px 72px;
+  text-align:center;
+}
+.foot .disclaimer{
+  font-size:15px;
+  color:var(--blue-slate);
+  margin:0 auto 28px;
+  max-width:44ch;
+}
+.link-again{
+  font-family:var(--font-display);
+  font-size:14px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--link);
+  text-decoration:none;
+}
+.link-again:hover{color:var(--link-hover)}
+.demo-tag{
+  font-family:var(--font-display);
+  font-size:11px;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-faint);
+  margin:40px 0 0;
+}
+
+.err{
+  max-width:var(--measure-prose);
+  margin:0 auto;
+  padding:104px 24px;
+  text-align:center;
+}
+.err h2{
+  font-size:clamp(26px, 2.8vw, 34px);
+  color:var(--near-black);
+  margin:0 0 16px;
+}
+.err p{color:var(--blue-slate);margin:0 0 28px}
+
+@media(max-width:640px){
+  .cta-inner{grid-template-columns:1fr;gap:28px;justify-items:center;text-align:center}
+  .book-cover{width:min(180px,50vw)}
+  .cta-copy p{margin-left:auto;margin-right:auto}
+  .cta-copy .btn{width:100%}
+  .gate-form{flex-direction:column}
+  .gate-form .btn{width:100%}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <section id="report" class="hidden">
-    <div class="report-head">
-      <p class="result-kicker">Your Parent Report Card</p>
-      <h2 class="headline" id="headline"></h2>
+<section id="report" class="hidden">
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Parent Report Card</p>
+      <h1 class="finding" id="headline"></h1>
       <p class="recog" id="recog"></p>
     </div>
+  </div>
 
-    <p class="section-title">What’s showing up</p>
-    <ul class="signals" id="signals"></ul>
-
-    <p class="section-title">One small practice</p>
-    <div class="practice">
-      <p class="practice-label">Same for everyone · start here</p>
-      <h3>Protect one block that is only yours</h3>
-      <p>Tomorrow, protect one 15–20 minute block that is only yours. Honest rest or something that restores you, not more logistics. Notice how the rest of the day feels.</p>
-      <p class="note">This is a starter, not the whole fix. The book is the full multi-area fresh-start plan.</p>
+  <div class="band">
+    <div class="band-inner">
+      <p class="section-label">What's showing up</p>
+      <ul class="signals" id="signals"></ul>
     </div>
+  </div>
 
-    <div class="email-gate" id="emailGate">
-      <p class="eyebrow">Companion sheet</p>
-      <p style="margin:6px 0 0;font-size:15.5px;color:var(--ink-soft);">Want the companion sheet with this practice, a 7-day starter, and a nightly check-in? Drop your email and we’ll send it.</p>
-      <div id="gateForm">
-        <input type="email" placeholder="your@email.com" id="emailField">
-        <br>
-        <button class="btn" onclick="submitEmail()">Send me the companion</button>
+  <div class="bridge-band">
+    <div class="band-inner">
+      <p class="section-label">What this means</p>
+      <h2>One tip won't restore you inside family life</h2>
+      <p>A single tip can take the edge off for a day. It won't rebuild the parts of you that thinned while you kept showing up for everyone else.</p>
+      <p>The book is the full fresh-start plan — a way back to feeling like yourself without stepping away from your family.</p>
+    </div>
+  </div>
+
+  <div class="gate-band">
+    <div class="gate-card" id="emailGate">
+      <p class="eyebrow">Parent Report Card notes</p>
+      <h3>What this is telling you</h3>
+      <p class="gate-copy">A short teaching piece on the pattern behind your result — why one-off fixes fade, and how a real fresh start works. Not a worksheet.</p>
+      <div id="gateForm" class="gate-form">
+        <input type="email" placeholder="your@email.com" id="emailField" autocomplete="email">
+        <button class="btn" type="button" onclick="submitEmail()">Send me the notes</button>
       </div>
-      <p class="fineprint" id="gateMsg" style="margin-top:12px;"></p>
+      <p class="gate-msg" id="gateMsg"></p>
     </div>
+  </div>
 
-    <div class="book-case">
-      <div class="book-case-grid">
-        <img class="book-cover" src="cover-transparent.png" width="140" height="196" alt="Back to School for Parents book cover">
-        <div class="book-case-copy">
-          <h3>Back to School for Parents: 10 Essential Areas For Your Own Fresh Start</h3>
-          <p>by Joe and Lori Miller</p>
-          <p>This Report Card gave you one honest look and one small practice. The book is the full map across every part of life that shapes how you show up, not a one-area patch.</p>
-          <a class="btn" href="https://backtoschoolparents.com" target="_blank" rel="noopener">Get the book</a>
-        </div>
+  <div class="cta-band">
+    <div class="cta-inner">
+      <img class="book-cover" src="cover-transparent.png" width="160" height="224" alt="Back to School for Parents book cover">
+      <div class="cta-copy">
+        <p class="eyebrow">The full plan</p>
+        <h2>Back to School for Parents: 10 Essential Areas For Your Own Fresh Start</h2>
+        <p class="authors">By Joe and Lori Miller</p>
+        <p>The Report Card named the tension. The book is where the rebuild lives — a complete fresh start across the parts of life that shape how you show up.</p>
+        <a class="btn btn-lg" href="https://backtoschoolparents.com" target="_blank" rel="noopener">Get the book</a>
       </div>
     </div>
+  </div>
 
+  <div class="foot">
     <p class="disclaimer">Not a diagnosis or a substitute for therapy. Two licensed counselors built this as a mirror, not a ranking.</p>
-    <a class="btn btn-ghost restart" href="index.html">Take the Report Card again</a>
+    <a class="link-again" href="index.html">Take the Report Card again</a>
     <p class="demo-tag">Prototype · result rendered from the link</p>
-  </section>
+  </div>
+</section>
 
-  <section id="noResult" class="hidden">
-    <div class="err">
-      <h2 style="color:var(--forest);font-family:'Helvetica Neue',Arial,sans-serif;">No result to show yet</h2>
-      <p class="fineprint">This page displays your Report Card. Take it to see yours.</p>
-      <a class="btn" href="index.html" style="margin-top:16px;">Start the Report Card</a>
-    </div>
-  </section>
-
-</div>
+<section id="noResult" class="hidden">
+  <div class="err">
+    <h2>No result to show yet</h2>
+    <p>This page displays your Report Card. Take it to see yours.</p>
+    <a class="btn" href="index.html">Take the Report Card</a>
+  </div>
+</section>
 
 <script>
 /* Area keys ORDER MUST match index.html. Scores arrive positionally in ?s=
@@ -147,30 +369,31 @@ const AREA_KEYS = [
 ];
 
 const SIGNALS = {
-  sleep: "Late nights that feel like the only time that’s yours — and mornings that pay for it",
-  physical: "Your body is last on the list, and it’s starting to show",
+  sleep: "Late nights that feel like the only time that's yours — and mornings that pay for it",
+  physical: "Your body is last on the list, and it's starting to show",
   mental: "Stress sticks; small things land harder than they should",
   financial: "Money hums in the background and raises the volume on everything else",
   career: "Work and home are bleeding into each other",
   partnership: "You and your partner are mostly logistics, not a team",
-  presence: "You’re in the room with your kids, but not really there",
-  identity: "You’ve lost track of who you are outside of parenting",
+  presence: "You're in the room with your kids, but not really there",
+  identity: "You've lost track of who you are outside of parenting",
   social: "Real connection outside the house has gone thin",
   home: "Mornings and evenings feel like constant scramble"
 };
 
+/* Bands around self/family tension. overallHealth 0–100 (higher = healthier). */
 const BANDS = {
   high: {
-    headline: "You’re holding more than you think",
-    recog: "A lot is working. You’re still carrying more than most people see. The friction showing up isn’t failure; it’s the cost of keeping everything moving. One small protected practice, then the full plan when you’re ready."
+    headline: "You're still on the list — barely",
+    recog: "You're showing up for your family, and enough of you is still intact that it doesn't look like a crisis from the outside. The friction you feel is the cost of keeping everyone else's life moving. You are not failing at anything. You're early enough to do something about it on purpose."
   },
   mid: {
-    headline: "You’re stretching thinner than it looks",
-    recog: "From the outside it may look fine. Inside, the load is real. You’re covering gaps with grit, and grit has a shelf life. Naming what’s showing up is the start of doing better, not a grade."
+    headline: "You've been thinning yourself out",
+    recog: "You keep showing up for everyone. Somewhere along the way, you dropped off your own list. From the outside it may look fine. Inside, the load is real. Naming that tension is the start of a fresh start — not a grade."
   },
   low: {
-    headline: "You’re running on fumes",
-    recog: "You’re not lazy and you’re not broken. You’re depleted. When every part of life is asking at once, presence and patience are the first things to go. Start with one protected block. The book meets you for the rest."
+    headline: "Family got you. You got lost.",
+    recog: "You're not lazy and you're not broken. You gave yourself to family life until the person inside it went quiet. When every part of the day is asking at once, feeling like yourself is the first thing to go. You are not failing at anything. You're depleted — and a real fresh start is still possible."
   }
 };
 
@@ -206,15 +429,20 @@ function render(){
   // Lowest health = highest strain. Pick up to 3 unique lowest.
   const ranked = scores.map((score, i) => ({key: AREA_KEYS[i], score}))
     .sort((a,b) => a.score - b.score || a.key.localeCompare(b.key));
-  const picks = ranked.slice(0, 3).filter(r => r.score < 10); // always show up to 3 if any strain
-  // If somehow all perfect, still show the 3 lowest (ties) so the section isn't empty
+  const picks = ranked.slice(0, 3).filter(r => r.score < 10);
   const show = (picks.length ? picks : ranked.slice(0,3)).slice(0,3);
 
   const ul = document.getElementById('signals');
   ul.innerHTML = '';
-  show.forEach(r => {
+  show.forEach((r, i) => {
     const li = document.createElement('li');
-    li.textContent = SIGNALS[r.key];
+    const num = document.createElement('span');
+    num.className = 'num';
+    num.textContent = String(i + 1).padStart(2, '0');
+    const text = document.createElement('span');
+    text.textContent = SIGNALS[r.key];
+    li.appendChild(num);
+    li.appendChild(text);
     ul.appendChild(li);
   });
 }
@@ -228,7 +456,7 @@ function submitEmail(){
     return;
   }
   document.getElementById('gateForm').classList.add('hidden');
-  msg.textContent = 'Thanks. We’ll send the companion sheet (the thickened 2-page starter with your practice and this week’s plan). (Demo only; nothing was sent.)';
+  msg.textContent = "Thanks. We'll send the Parent Report Card notes — a short teaching piece on what your result is pointing at. (Demo only; nothing was sent.)";
 }
 
 render();

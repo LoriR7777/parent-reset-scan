@@ -4,72 +4,249 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Parent Report Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --forest:#2f5233;--forest-soft:#3f6b45;--cream:#f7f3e8;--cream-card:#fbf8f0;
-    --ink:#20301f;--ink-soft:#4a5a48;--gold:#e8b23a;--gold-soft:#f2d489;
-    --line:#d9d2be;--shadow:rgba(35,54,33,.10);
-    --bus-yellow:#F5C518;--leaf-green:#3C6B45;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{background:var(--cream);color:var(--ink);
-    font-family:Georgia,"Iowan Old Style","Times New Roman",serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:680px;margin:0 auto;padding:32px 22px 80px;}
-  h1,.eyebrow,.btn,.opt,.progress-label,.intro-meta b{font-family:"Helvetica Neue",Arial,sans-serif;}
-  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--forest-soft);font-weight:700;margin:0 0 10px;}
-  h1{font-size:40px;line-height:1.05;margin:0 0 14px;font-weight:800;letter-spacing:-.01em;color:var(--forest);}
-  .gold-rule{height:5px;width:74px;background:var(--gold);border-radius:2px;margin:0 0 26px;}
-  .lede{font-size:18px;color:var(--ink-soft);margin:0 0 26px;}
-  .fineprint{font-size:14px;color:var(--ink-soft);}
-  .btn{display:inline-block;border:none;cursor:pointer;background:var(--forest);color:var(--cream);
-    font-size:16px;font-weight:700;letter-spacing:.02em;padding:15px 30px;border-radius:9px;
-    transition:background .15s ease,transform .05s ease;}
-  .btn:hover{background:var(--forest-soft);}
-  .btn:active{transform:translateY(1px);}
-  .btn-ghost{background:transparent;color:var(--forest);border:2px solid var(--line);}
-  .btn-ghost:hover{background:#efe9d8;}
-  .intro-meta{display:flex;gap:26px;margin:30px 0 34px;flex-wrap:wrap;}
-  .intro-meta div{font-size:15px;color:var(--ink-soft);}
-  .intro-meta b{display:block;font-size:22px;color:var(--forest);font-weight:800;}
-  .progress-shell{position:sticky;top:0;background:var(--cream);padding:16px 0 14px;z-index:5;}
-  .progress-track{height:8px;background:#e6dfca;border-radius:4px;overflow:hidden;}
-  .progress-fill{height:100%;background:var(--gold);width:0;transition:width .3s ease;}
-  .progress-label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--forest-soft);font-weight:700;margin-top:9px;}
-  .q-card{background:var(--cream-card);border:1px solid var(--line);border-radius:14px;
-    padding:30px 26px;box-shadow:0 6px 22px var(--shadow);margin-bottom:22px;}
-  .q-text{font-size:22px;line-height:1.35;margin:6px 0 24px;color:var(--ink);}
-  .opts{display:flex;flex-direction:column;gap:11px;}
-  .opt{text-align:left;border:2px solid var(--line);background:#fff;border-radius:10px;
-    padding:14px 18px;font-size:15.5px;cursor:pointer;color:var(--ink);transition:all .12s ease;line-height:1.4;}
-  .opt:hover{border-color:var(--forest-soft);background:#fbfaf4;}
-  .opt.sel{border-color:var(--forest);background:var(--forest);color:var(--cream);}
-  .q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:4px;}
-  .building{text-align:center;padding:60px 20px;}
-  .building h2{font-family:"Helvetica Neue",Arial,sans-serif;color:var(--forest);font-size:24px;}
-  .hidden{display:none;}
-  @media(max-width:520px){h1{font-size:32px;}.q-text{font-size:19px;}}
+:root {
+  --bus-yellow: #F5C518;
+  --bus-yellow-light: #FFD433;
+  --bus-yellow-deep: #C79A05;
+  --sky-blue: #BEDCEE;
+  --sky-blue-light: #DCEBF5;
+  --leaf-green: #3C6B45;
+  --leaf-green-deep: #2F5B3A;
+  --leaf-green-muted: #9FB6A4;
+  --cream: #FBF4E4;
+  --cream-tint: #FDF7EA;
+  --cream-line: #EFE2C6;
+  --white: #FFFFFF;
+  --card-border: #E6DCC2;
+  --near-black: #171512;
+  --blue-slate: #2C4152;
+  --link: #2F6B8F;
+  --link-hover: #1E4C68;
+  --gradient-sky: linear-gradient(var(--sky-blue), var(--sky-blue-light) 70%, var(--cream));
+  --font-display: Oswald, "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+  --radius-button: 4px;
+  --radius-card: 6px;
+  --radius-field: 4px;
+  --button-edge: 4px solid var(--bus-yellow-deep);
+  --transition-button: 120ms linear;
+  --measure-prose: 720px;
+  --measure-hero: 1080px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--cream);
+  color:var(--near-black);
+  font-family:var(--font-body);
+  font-size:19px;
+  line-height:1.65;
+  text-wrap:pretty;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{margin:0;font-family:var(--font-display);font-weight:700;text-transform:uppercase;text-wrap:balance}
+a{color:var(--link)}
+a:hover{color:var(--link-hover)}
+.hidden{display:none}
+
+.hero{
+  background:var(--gradient-sky);
+  padding:56px 24px 72px;
+}
+.hero-inner{max-width:var(--measure-hero);margin:0 auto}
+.eyebrow{
+  font-family:var(--font-display);
+  font-size:13px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--leaf-green-deep);
+  margin:0 0 12px;
+}
+.byline{
+  font-family:var(--font-display);
+  font-size:14px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--leaf-green);
+  margin:0 0 24px;
+}
+.hero h1{
+  font-size:clamp(44px, 6.4vw, 82px);
+  line-height:.92;
+  letter-spacing:-.01em;
+  color:var(--near-black);
+  max-width:18ch;
+  margin:0 0 24px;
+}
+.lede{
+  font-size:clamp(19px, 2vw, 24px);
+  line-height:1.35;
+  color:var(--blue-slate);
+  max-width:38ch;
+  margin:0 0 32px;
+}
+.meta{
+  display:flex;flex-wrap:wrap;gap:32px;
+  margin:0 0 44px;
+}
+.meta-item{display:flex;flex-direction:column;gap:4px}
+.meta-num{
+  font-family:var(--font-display);
+  font-size:32px;font-weight:700;
+  color:var(--bus-yellow);
+  line-height:1;
+  letter-spacing:-.01em;
+}
+.meta-label{
+  font-family:var(--font-display);
+  font-size:13px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--leaf-green-deep);
+}
+.btn{
+  display:inline-block;
+  border:none;cursor:pointer;
+  background:var(--bus-yellow);
+  color:var(--near-black);
+  font-family:var(--font-display);
+  font-size:22px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:20px 44px;
+  border-radius:var(--radius-button);
+  border-bottom:var(--button-edge);
+  text-decoration:none;
+  transition:background var(--transition-button), transform var(--transition-button);
+}
+.btn:hover{background:var(--bus-yellow-light);transform:translateY(-2px)}
+.fineprint{
+  margin:24px 0 0;
+  font-size:16px;
+  color:var(--blue-slate);
+  max-width:42ch;
+}
+
+.quiz-wrap{
+  max-width:var(--measure-prose);
+  margin:0 auto;
+  padding:44px 24px 104px;
+}
+.progress{
+  margin:0 0 32px;
+}
+.progress-track{
+  height:4px;
+  background:var(--card-border);
+  border-radius:2px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  background:var(--bus-yellow);
+  width:0;
+  transition:width .2s linear;
+}
+.progress-label{
+  font-family:var(--font-display);
+  font-size:13px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--leaf-green-deep);
+  margin-top:12px;
+}
+.q-card{
+  background:var(--white);
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-card);
+  padding:32px 24px;
+}
+.q-text{
+  font-size:clamp(20px, 2.4vw, 24px);
+  line-height:1.35;
+  color:var(--near-black);
+  margin:0 0 24px;
+  text-wrap:pretty;
+}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{
+  text-align:left;
+  border:1px solid var(--card-border);
+  background:var(--cream-tint);
+  border-radius:var(--radius-field);
+  padding:14px 18px;
+  font-family:var(--font-body);
+  font-size:18px;
+  cursor:pointer;
+  color:var(--near-black);
+  transition:border-color var(--transition-button), background var(--transition-button);
+  line-height:1.4;
+}
+.opt:hover{border-color:var(--leaf-green);background:var(--white)}
+.opt.sel{
+  border-color:var(--near-black);
+  background:var(--near-black);
+  color:var(--cream);
+}
+.q-nav{margin-top:24px}
+.link-back{
+  font-family:var(--font-display);
+  font-size:14px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--link);
+  background:none;border:none;cursor:pointer;padding:0;
+}
+.link-back:hover{color:var(--link-hover)}
+
+.building{
+  max-width:var(--measure-prose);
+  margin:0 auto;
+  padding:104px 24px;
+  text-align:center;
+}
+.building h2{
+  font-size:clamp(26px, 2.8vw, 34px);
+  color:var(--near-black);
+  margin:0 0 16px;
+}
+.building p{color:var(--blue-slate);margin:0}
+
+@media(max-width:520px){
+  .hero{padding:44px 20px 56px}
+  .btn{width:100%;text-align:center;padding:18px 24px;font-size:20px}
+  .meta{gap:24px}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <section id="intro">
-    <p class="eyebrow">Parent Report Card · from Joe and Lori Miller</p>
-    <h1>Something’s off — let’s see how you’re really doing</h1>
-    <div class="gold-rule"></div>
-    <p class="lede">You’re not looking for a grade. You want to do better as a parent and as a person. This short check mirrors how life is actually running right now, then gives you one small move and a clear next step.</p>
-    <div class="intro-meta">
-      <div><b>30</b>questions</div>
-      <div><b>~4 min</b>about four minutes</div>
-      <div><b>One honest picture</b>not a ranking of subjects</div>
+<section id="intro" class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Parent Report Card</p>
+    <p class="byline">By Joe &amp; Lori Miller</p>
+    <h1>You're showing up for everyone. Who's showing up for you?</h1>
+    <p class="lede">You're not chasing a grade. You want to feel like yourself without stepping away from your family. The Report Card shows how that tension shows up in the way life is actually running.</p>
+    <div class="meta">
+      <div class="meta-item">
+        <span class="meta-num">30</span>
+        <span class="meta-label">Questions</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-num">~4</span>
+        <span class="meta-label">Minutes</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-num">01</span>
+        <span class="meta-label">Honest picture</span>
+      </div>
     </div>
-    <button class="btn" onclick="start()">Start the Report Card</button>
-    <p class="fineprint" style="margin-top:20px;">Two licensed counselors built this. Nothing here is a diagnosis. It’s a mirror.</p>
-  </section>
+    <button class="btn" type="button" onclick="start()">Take the Report Card</button>
+    <p class="fineprint">Two licensed counselors built this. Nothing here is a diagnosis. It's a mirror.</p>
+  </div>
+</section>
 
-  <section id="quiz" class="hidden">
-    <div class="progress-shell">
+<section id="quiz" class="hidden">
+  <div class="quiz-wrap">
+    <div class="progress">
       <div class="progress-track"><div class="progress-fill" id="pfill"></div></div>
       <div class="progress-label" id="plabel">Question 1 of 30</div>
     </div>
@@ -78,19 +255,17 @@
       <div class="opts" id="opts"></div>
     </div>
     <div class="q-nav">
-      <button class="btn btn-ghost" id="backbtn" onclick="prev()">Back</button>
-      <span></span>
+      <button class="link-back" id="backbtn" type="button" onclick="prev()">Back</button>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="building" class="hidden">
-    <div class="building">
-      <h2>Putting your picture together…</h2>
-      <p class="fineprint">One honest look at how life is running right now.</p>
-    </div>
-  </section>
-
-</div>
+<section id="building" class="hidden">
+  <div class="building">
+    <h2>Putting your picture together</h2>
+    <p>One honest look at how that tension shows up right now.</p>
+  </div>
+</section>
 
 <script>
 const RESULT_PAGE = "result.html";
@@ -174,6 +349,7 @@ function render(){
   const wrap = document.getElementById('opts'); wrap.innerHTML='';
   SCALE.forEach(s=>{
     const b=document.createElement('button');
+    b.type='button';
     b.className='opt'; b.textContent=s.t;
     if(answers[idx]===s.v) b.classList.add('sel');
     b.onclick=()=>choose(s.v);

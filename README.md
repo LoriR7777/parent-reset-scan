@@ -6,4 +6,4 @@ Live GitHub Pages site for the **Parent Report Card** (*Back to School for Paren
 - Results: `result.html` (scores in the URL query string)
 - Live: https://lorir7777.github.io/parent-reset-scan/
 
-v2 publishes the Report Card framing (no area verdict on results; universal companion). This is a static front-end prototype (not clinical; not a diagnosis).
+Design-system rebuild: cream / bus yellow / leaf / sky; Oswald + Source Sans 3; self/family tension framing; email gate for Parent Report Card notes. Static front-end prototype (not clinical; not a diagnosis).
