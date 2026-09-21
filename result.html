@@ -67,17 +67,54 @@ a:hover{color:var(--link-hover)}
 .hero-inner{max-width:var(--measure-prose);margin:0 auto}
 .eyebrow{
   font-family:var(--font-display);
-  font-size:13px;font-weight:600;
-  letter-spacing:.18em;text-transform:uppercase;
+  font-size:19px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;
   color:var(--leaf-green-deep);
-  margin:0 0 16px;
+  margin:0 0 20px;
 }
+.hero-top{
+  display:flex;
+  gap:24px;
+  align-items:flex-start;
+  margin:0 0 24px;
+}
+.mark{
+  flex:0 0 auto;
+  width:96px;
+  height:96px;
+  background:var(--cream);
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-card);
+  border-bottom:4px solid var(--bus-yellow);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  padding:10px 8px;
+}
+.mark-num{
+  font-family:var(--font-display);
+  font-size:42px;font-weight:700;
+  line-height:1;
+  letter-spacing:-.02em;
+  color:var(--near-black);
+}
+.mark-label{
+  font-family:var(--font-display);
+  font-size:11px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--leaf-green-deep);
+  line-height:1.2;
+  text-align:center;
+}
+.hero-copy{flex:1 1 auto;min-width:0}
 .finding{
   font-size:clamp(32px, 4.4vw, 54px);
   line-height:.96;
   letter-spacing:-.01em;
   color:var(--near-black);
-  margin:0 0 24px;
+  margin:0;
 }
 .recog{
   font-size:clamp(18px, 1.8vw, 20px);
@@ -233,6 +270,7 @@ a:hover{color:var(--link-hover)}
   letter-spacing:.12em;text-transform:uppercase;
   color:var(--leaf-green-muted);
   margin:0 0 16px;
+  text-align:center;
 }
 .cta-copy p{
   font-size:18px;
@@ -283,6 +321,9 @@ a:hover{color:var(--link-hover)}
 .err p{color:var(--blue-slate);margin:0 0 28px}
 
 @media(max-width:640px){
+  .hero-top{flex-direction:column;gap:20px}
+  .mark{width:88px;height:88px}
+  .mark-num{font-size:38px}
   .cta-inner{grid-template-columns:1fr;gap:28px;justify-items:center;text-align:center}
   .book-cover{width:min(180px,50vw)}
   .cta-copy p{margin-left:auto;margin-right:auto}
@@ -298,7 +339,15 @@ a:hover{color:var(--link-hover)}
   <div class="hero">
     <div class="hero-inner">
       <p class="eyebrow">Parent Report Card</p>
-      <h1 class="finding" id="headline"></h1>
+      <div class="hero-top">
+        <div class="mark" aria-label="Your mark">
+          <span class="mark-num" id="markNum"></span>
+          <span class="mark-label">Your mark</span>
+        </div>
+        <div class="hero-copy">
+          <h1 class="finding" id="headline"></h1>
+        </div>
+      </div>
       <p class="recog" id="recog"></p>
     </div>
   </div>
@@ -313,20 +362,20 @@ a:hover{color:var(--link-hover)}
   <div class="bridge-band">
     <div class="band-inner">
       <p class="section-label">What this means</p>
-      <h2>One tip won't restore you inside family life</h2>
-      <p>A single tip can take the edge off for a day. It won't rebuild the parts of you that thinned while you kept showing up for everyone else.</p>
-      <p>The book is the full fresh-start plan — a way back to feeling like yourself without stepping away from your family.</p>
+      <h2>A tip won't fix this</h2>
+      <p>More tips and tricks won't bring you back. What helps is putting yourself back on the list, and focusing on the parts of your life that help you show up as the parent — and the person — you want to be.</p>
+      <p>The book is the full plan for that fresh start, without stepping away from your family.</p>
     </div>
   </div>
 
   <div class="gate-band">
     <div class="gate-card" id="emailGate">
-      <p class="eyebrow">Parent Report Card notes</p>
-      <h3>What this is telling you</h3>
-      <p class="gate-copy">A short teaching piece on the pattern behind your result — why one-off fixes fade, and how a real fresh start works. Not a worksheet.</p>
+      <p class="eyebrow">Free download</p>
+      <h3>Get your Parent Report Card notes</h3>
+      <p class="gate-copy">See what your mark means, what to do this week to put yourself back on the list, and how to choose what to focus on first so you feel more like yourself and show up better for your family.</p>
       <div id="gateForm" class="gate-form">
         <input type="email" placeholder="your@email.com" id="emailField" autocomplete="email">
-        <button class="btn" type="button" onclick="submitEmail()">Send me the notes</button>
+        <button class="btn" type="button" onclick="submitEmail()">Email me my notes</button>
       </div>
       <p class="gate-msg" id="gateMsg"></p>
     </div>
@@ -339,14 +388,14 @@ a:hover{color:var(--link-hover)}
         <p class="eyebrow">The full plan</p>
         <h2>Back to School for Parents: 10 Essential Areas For Your Own Fresh Start</h2>
         <p class="authors">By Joe and Lori Miller</p>
-        <p>The Report Card named the tension. The book is where the rebuild lives — a complete fresh start across the parts of life that shape how you show up.</p>
+        <p>A complete fresh start across the parts of life that shape how you show up.</p>
         <a class="btn btn-lg" href="https://backtoschoolparents.com" target="_blank" rel="noopener">Get the book</a>
       </div>
     </div>
   </div>
 
   <div class="foot">
-    <p class="disclaimer">Not a diagnosis or a substitute for therapy. Two licensed counselors built this as a mirror, not a ranking.</p>
+    <p class="disclaimer">This is not therapy or a diagnosis.</p>
     <a class="link-again" href="index.html">Take the Report Card again</a>
     <p class="demo-tag">Prototype · result rendered from the link</p>
   </div>
@@ -377,7 +426,7 @@ const SIGNALS = {
   partnership: "You and your partner are mostly logistics, not a team",
   presence: "You're in the room with your kids, but not really there",
   identity: "You've lost track of who you are outside of parenting",
-  social: "Real connection outside the house has gone thin",
+  social: "You've lost touch with people outside the house",
   home: "Mornings and evenings feel like constant scramble"
 };
 
@@ -385,15 +434,15 @@ const SIGNALS = {
 const BANDS = {
   high: {
     headline: "You're still on the list — barely",
-    recog: "You're showing up for your family, and enough of you is still intact that it doesn't look like a crisis from the outside. The friction you feel is the cost of keeping everyone else's life moving. You are not failing at anything. You're early enough to do something about it on purpose."
+    recog: "You're showing up for your family, and enough of you is still intact that it doesn't look like a crisis from the outside. The friction you feel is the cost of keeping everyone else's life moving. You're not failing. You're early enough to do something about it on purpose."
   },
   mid: {
-    headline: "You've been thinning yourself out",
-    recog: "You keep showing up for everyone. Somewhere along the way, you dropped off your own list. From the outside it may look fine. Inside, the load is real. Naming that tension is the start of a fresh start — not a grade."
+    headline: "You've dropped off your own list",
+    recog: "You keep showing up for everyone. Somewhere along the way, you stopped making room for yourself. From the outside it may look fine. Inside, the load is real. Naming that is the start of a fresh start — not a grade."
   },
   low: {
     headline: "Family got you. You got lost.",
-    recog: "You're not lazy and you're not broken. You gave yourself to family life until the person inside it went quiet. When every part of the day is asking at once, feeling like yourself is the first thing to go. You are not failing at anything. You're depleted — and a real fresh start is still possible."
+    recog: "You're not lazy. You're not broken. You kept putting your family first until there wasn't much left for you. When the whole day is asking at once, you stop feeling like yourself. That doesn't mean you're failing. It means you're worn out — and you can still make a fresh start."
   }
 };
 
@@ -423,6 +472,7 @@ function render(){
   const avg = scores.reduce((a,b)=>a+b,0) / scores.length; // 0–10
   const overallHealth = Math.round(avg * 10); // 0–100
   const band = bandFor(overallHealth);
+  document.getElementById('markNum').textContent = String(overallHealth);
   document.getElementById('headline').textContent = BANDS[band].headline;
   document.getElementById('recog').textContent = BANDS[band].recog;
 
@@ -456,7 +506,7 @@ function submitEmail(){
     return;
   }
   document.getElementById('gateForm').classList.add('hidden');
-  msg.textContent = "Thanks. We'll send the Parent Report Card notes — a short teaching piece on what your result is pointing at. (Demo only; nothing was sent.)";
+  msg.textContent = "Thanks. We'll email your Parent Report Card notes — what your mark means, what to do this week, and how to choose where to start. (Demo only; nothing was sent.)";
 }
 
 render();
