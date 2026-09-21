@@ -62,7 +62,7 @@ a:hover{color:var(--link-hover)}
 
 .hero{
   background:var(--gradient-sky);
-  padding:56px 24px 56px;
+  padding:56px 24px 40px;
 }
 .hero-inner{max-width:var(--measure-prose);margin:0 auto}
 .eyebrow{
@@ -76,12 +76,12 @@ a:hover{color:var(--link-hover)}
   display:flex;
   gap:24px;
   align-items:flex-start;
-  margin:0 0 24px;
+  margin:0 0 20px;
 }
 .mark{
   flex:0 0 auto;
-  width:96px;
-  height:96px;
+  width:108px;
+  height:108px;
   background:var(--cream);
   border:1px solid var(--card-border);
   border-radius:var(--radius-card);
@@ -90,25 +90,58 @@ a:hover{color:var(--link-hover)}
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:4px;
-  padding:10px 8px;
+  gap:2px;
+  padding:12px 8px 10px;
+}
+.mark-score{
+  display:flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:1px;
+  line-height:1;
 }
 .mark-num{
   font-family:var(--font-display);
-  font-size:42px;font-weight:700;
+  font-size:40px;font-weight:700;
   line-height:1;
   letter-spacing:-.02em;
   color:var(--near-black);
 }
+.mark-denom{
+  font-family:var(--font-display);
+  font-size:16px;font-weight:600;
+  letter-spacing:.02em;
+  color:var(--blue-slate);
+  line-height:1;
+}
 .mark-label{
   font-family:var(--font-display);
-  font-size:11px;font-weight:600;
+  font-size:10px;font-weight:600;
   letter-spacing:.14em;text-transform:uppercase;
   color:var(--leaf-green-deep);
   line-height:1.2;
   text-align:center;
+  margin-top:4px;
 }
 .hero-copy{flex:1 1 auto;min-width:0}
+.band-tag{
+  margin:0 0 10px;
+}
+.band-name{
+  font-family:var(--font-display);
+  font-size:15px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--leaf-green-deep);
+  display:block;
+}
+.band-helper{
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.4;
+  color:var(--blue-slate);
+  margin:6px 0 0;
+  max-width:36ch;
+}
 .finding{
   font-size:clamp(32px, 4.4vw, 54px);
   line-height:.96;
@@ -120,8 +153,48 @@ a:hover{color:var(--link-hover)}
   font-size:clamp(18px, 1.8vw, 20px);
   line-height:1.5;
   color:var(--blue-slate);
-  margin:0;
+  margin:0 0 28px;
   max-width:40ch;
+}
+
+.mark-legend{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:12px;
+  margin:0;
+}
+.legend-card{
+  background:var(--cream);
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-card);
+  border-bottom:3px solid var(--bus-yellow);
+  padding:14px 14px 12px;
+}
+.legend-card.active{
+  background:var(--white);
+  border-bottom-color:var(--bus-yellow-deep);
+}
+.legend-range{
+  font-family:var(--font-display);
+  font-size:11px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--leaf-green-deep);
+  margin:0 0 4px;
+}
+.legend-name{
+  font-family:var(--font-display);
+  font-size:14px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--near-black);
+  margin:0;
+  line-height:1.2;
+}
+.legend-helper{
+  font-family:var(--font-body);
+  font-size:13px;
+  line-height:1.35;
+  color:var(--blue-slate);
+  margin:6px 0 0;
 }
 
 .band{
@@ -151,6 +224,17 @@ a:hover{color:var(--link-hover)}
   line-height:1;
   flex:0 0 auto;
   letter-spacing:-.01em;
+}
+.pattern-note{
+  background:var(--cream-tint);
+  border:1px solid var(--cream-line);
+  border-radius:var(--radius-card);
+  border-left:4px solid var(--bus-yellow);
+  padding:18px 20px;
+  margin:0 0 20px;
+  font-size:17px;
+  line-height:1.45;
+  color:var(--blue-slate);
 }
 
 .bridge-band{
@@ -322,8 +406,10 @@ a:hover{color:var(--link-hover)}
 
 @media(max-width:640px){
   .hero-top{flex-direction:column;gap:20px}
-  .mark{width:88px;height:88px}
-  .mark-num{font-size:38px}
+  .mark{width:100px;height:100px}
+  .mark-num{font-size:36px}
+  .mark-denom{font-size:14px}
+  .mark-legend{grid-template-columns:1fr;gap:10px}
   .cta-inner{grid-template-columns:1fr;gap:28px;justify-items:center;text-align:center}
   .book-cover{width:min(180px,50vw)}
   .cta-copy p{margin-left:auto;margin-right:auto}
@@ -340,21 +426,45 @@ a:hover{color:var(--link-hover)}
     <div class="hero-inner">
       <p class="eyebrow">Parent Report Card</p>
       <div class="hero-top">
-        <div class="mark" aria-label="Your mark">
-          <span class="mark-num" id="markNum"></span>
+        <div class="mark" aria-label="Your mark out of 100">
+          <div class="mark-score">
+            <span class="mark-num" id="markNum"></span><span class="mark-denom" id="markDenom">/100</span>
+          </div>
           <span class="mark-label">Your mark</span>
         </div>
         <div class="hero-copy">
+          <div class="band-tag">
+            <span class="band-name" id="bandName"></span>
+            <p class="band-helper" id="bandHelper"></p>
+          </div>
           <h1 class="finding" id="headline"></h1>
         </div>
       </div>
       <p class="recog" id="recog"></p>
+      <div class="mark-legend" id="markLegend" role="list" aria-label="Mark bands">
+        <div class="legend-card" data-band="high" role="listitem">
+          <p class="legend-range">70–100</p>
+          <p class="legend-name">Holding on</p>
+          <p class="legend-helper">You're still standing. You're running low on you.</p>
+        </div>
+        <div class="legend-card" data-band="mid" role="listitem">
+          <p class="legend-range">40–69</p>
+          <p class="legend-name">Stretched</p>
+          <p class="legend-helper">You're showing up, but there's not much left for you.</p>
+        </div>
+        <div class="legend-card" data-band="low" role="listitem">
+          <p class="legend-range">Under 40</p>
+          <p class="legend-name">Worn out</p>
+          <p class="legend-helper">You're worn out from putting everyone first.</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="band">
     <div class="band-inner">
       <p class="section-label">What's showing up</p>
+      <div id="patternNote" class="pattern-note hidden"></div>
       <ul class="signals" id="signals"></ul>
     </div>
   </div>
@@ -417,34 +527,146 @@ const AREA_KEYS = [
   "partnership","presence","identity","social","home"
 ];
 
+/* Lived-language signal lines. Never print area names. */
 const SIGNALS = {
-  sleep: "Late nights that feel like the only time that's yours — and mornings that pay for it",
-  physical: "Your body is last on the list, and it's starting to show",
-  mental: "Stress sticks; small things land harder than they should",
-  financial: "Money hums in the background and raises the volume on everything else",
-  career: "Work and home are bleeding into each other",
-  partnership: "You and your partner are mostly logistics, not a team",
-  presence: "You're in the room with your kids, but not really there",
-  identity: "You've lost track of who you are outside of parenting",
-  social: "You've lost touch with people outside the house",
-  home: "Mornings and evenings feel like constant scramble"
+  sleep: [
+    "Late nights that feel like the only time that's yours — and mornings that pay for it",
+    "You're running on leftover sleep, and it shows by mid-afternoon",
+    "Bedtime keeps sliding, and the next day starts already behind"
+  ],
+  physical: [
+    "Your body is last on the list, and it's starting to show",
+    "You keep meaning to take care of yourself — and the week keeps winning",
+    "Meals, movement, checkups: they wait until everything else is done"
+  ],
+  mental: [
+    "Stress sticks; small things land harder than they should",
+    "Your mind stays on after the house goes down",
+    "You're carrying worry that doesn't get a break"
+  ],
+  financial: [
+    "Money hums in the background and raises the volume on everything else",
+    "Bills and budgets sit in the back of your mind all day",
+    "Money decisions feel heavy even when you're paying attention"
+  ],
+  career: [
+    "Work and home are bleeding into each other",
+    "You're still answering work after the kids need you",
+    "The job takes more than the hours on the calendar"
+  ],
+  partnership: [
+    "You and your partner are mostly logistics, not a team",
+    "You talk about schedules more than you talk about each other",
+    "There's little room left for the two of you outside the kids"
+  ],
+  presence: [
+    "You're in the room with your kids, but not really there",
+    "You're half-listening while your mind is already on the next thing",
+    "The moments with them pass while you're still catching up"
+  ],
+  identity: [
+    "You've lost track of who you are outside of parenting",
+    "Your own interests keep getting pushed to next month",
+    "You remember yourself in pieces, not as a whole person"
+  ],
+  social: [
+    "You've lost touch with people outside the house",
+    "Friendships wait while family takes every free hour",
+    "You miss having people who know you beyond the kids"
+  ],
+  home: [
+    "Mornings and evenings feel like constant scramble",
+    "The house runs on urgency from wake-up to bedtime",
+    "Routines keep breaking, and restarting them takes more than you have"
+  ]
 };
 
-/* Bands around self/family tension. overallHealth 0–100 (higher = healthier). */
+/* Bands: overallHealth 0–100 (higher = healthier). ≥3 variants each. */
 const BANDS = {
+  high: [
+    {
+      headline: "You're still on the list — barely",
+      recog: "You're showing up for your family, and enough of you is still intact that it doesn't look like a crisis from the outside. The friction you feel is the cost of keeping everyone else's life moving. You're not failing. You're early enough to do something about it on purpose."
+    },
+    {
+      headline: "You're holding the line — for now",
+      recog: "From the outside, things look steady. Inside, you're spending more of yourself than you're putting back. That gap is real, even if no one else sees it yet. Naming it now means you can act before it gets louder."
+    },
+    {
+      headline: "You're managing — and it's costing you",
+      recog: "You're keeping the days moving. The price is that there's less of you left after everyone else is sorted. You don't need a crisis to deserve a fresh start. You need room on your own list again."
+    }
+  ],
+  mid: [
+    {
+      headline: "You've dropped off your own list",
+      recog: "You keep showing up for everyone. Somewhere along the way, you stopped making room for yourself. From the outside it may look fine. Inside, the load is real. Naming that is the start of a fresh start — not a grade."
+    },
+    {
+      headline: "Everyone else comes first. You don't.",
+      recog: "You're still showing up. What's missing is anything left for you when the day is done. That isn't a character flaw. It's what happens when family takes every open hour. You can put yourself back on the list without leaving anyone behind."
+    },
+    {
+      headline: "You're showing up. You're not okay.",
+      recog: "You get through the days. People depend on you, and you deliver. What doesn't get delivered is care for yourself. That gap is why you feel worn down even when nothing looks broken. A fresh start starts with admitting that."
+    }
+  ],
+  low: [
+    {
+      headline: "Family got you. You got lost.",
+      recog: "You're not lazy. You're not broken. You kept putting your family first until there wasn't much left for you. When the whole day is asking at once, you stop feeling like yourself. That doesn't mean you're failing. It means you're worn out — and you can still make a fresh start."
+    },
+    {
+      headline: "There's nothing left on your list but them",
+      recog: "You've given so much to the people you love that your own needs barely register. That isn't love failing. That's love without a refill. Putting yourself back on the list is how you keep showing up — for them and for you."
+    },
+    {
+      headline: "You're worn out from putting everyone first",
+      recog: "The days ask more than you have. You've answered anyway. Now you're running on empty, and it shows in how little of you feels like you. This isn't the end of the story. It's the point where a fresh start matters most."
+    }
+  ]
+};
+
+const BAND_META = {
   high: {
-    headline: "You're still on the list — barely",
-    recog: "You're showing up for your family, and enough of you is still intact that it doesn't look like a crisis from the outside. The friction you feel is the cost of keeping everyone else's life moving. You're not failing. You're early enough to do something about it on purpose."
+    name: "Holding on",
+    helper: "You're still standing. You're running low on you."
   },
   mid: {
-    headline: "You've dropped off your own list",
-    recog: "You keep showing up for everyone. Somewhere along the way, you stopped making room for yourself. From the outside it may look fine. Inside, the load is real. Naming that is the start of a fresh start — not a grade."
+    name: "Stretched",
+    helper: "You're showing up, but there's not much left for you."
   },
   low: {
-    headline: "Family got you. You got lost.",
-    recog: "You're not lazy. You're not broken. You kept putting your family first until there wasn't much left for you. When the whole day is asking at once, you stop feeling like yourself. That doesn't mean you're failing. It means you're worn out — and you can still make a fresh start."
+    name: "Worn out",
+    helper: "You're worn out from putting everyone first."
   }
 };
+
+/* Known strain pairs → one lived-language combo line. Keys sorted alphabetically. */
+const PATTERNS = {
+  "identity|sleep": "When sleep is short and you can't find yourself outside parenting, the whole week feels like someone else's life.",
+  "partnership|presence": "When you and your partner are mostly logistics, it's harder to be fully there with the kids too.",
+  "career|home": "When work spills past the clock and home never settles, there's no clean place to land.",
+  "identity|social": "When you've lost yourself and lost touch with friends, there's nowhere left that feels like yours.",
+  "mental|sleep": "When your mind won't rest and nights stay short, the next day starts already behind.",
+  "physical|sleep": "When your body is last and sleep keeps slipping, you feel it in every hour that follows.",
+  "identity|partnership": "When the two of you are all logistics and you've lost track of who you are, both of you feel the gap.",
+  "home|presence": "When mornings scramble and you're only half there, the kids feel it even when you don't say a word."
+};
+
+function hashStr(str){
+  let h = 2166136261;
+  for(let i = 0; i < str.length; i++){
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function pickVariant(arr, seed){
+  if(!arr || !arr.length) return null;
+  return arr[hashStr(String(seed)) % arr.length];
+}
 
 function parseScores(){
   const params = new URLSearchParams(location.search);
@@ -461,6 +683,10 @@ function bandFor(overallHealth){
   return 'low';
 }
 
+function patternKey(a, b){
+  return [a, b].sort().join('|');
+}
+
 function render(){
   const scores = parseScores();
   if(!scores){
@@ -472,15 +698,44 @@ function render(){
   const avg = scores.reduce((a,b)=>a+b,0) / scores.length; // 0–10
   const overallHealth = Math.round(avg * 10); // 0–100
   const band = bandFor(overallHealth);
+  const scoreSeed = scores.join(',');
+
   document.getElementById('markNum').textContent = String(overallHealth);
-  document.getElementById('headline').textContent = BANDS[band].headline;
-  document.getElementById('recog').textContent = BANDS[band].recog;
+  document.getElementById('markDenom').textContent = '/100';
+
+  const meta = BAND_META[band];
+  document.getElementById('bandName').textContent = meta.name;
+  document.getElementById('bandHelper').textContent = meta.helper;
+
+  const bandCopy = pickVariant(BANDS[band], scoreSeed);
+  document.getElementById('headline').textContent = bandCopy.headline;
+  document.getElementById('recog').textContent = bandCopy.recog;
+
+  document.querySelectorAll('.legend-card').forEach(card => {
+    card.classList.toggle('active', card.getAttribute('data-band') === band);
+  });
 
   // Lowest health = highest strain. Pick up to 3 unique lowest.
   const ranked = scores.map((score, i) => ({key: AREA_KEYS[i], score}))
     .sort((a,b) => a.score - b.score || a.key.localeCompare(b.key));
   const picks = ranked.slice(0, 3).filter(r => r.score < 10);
   const show = (picks.length ? picks : ranked.slice(0,3)).slice(0,3);
+
+  const patternEl = document.getElementById('patternNote');
+  if(show.length >= 2){
+    const pk = patternKey(show[0].key, show[1].key);
+    const line = PATTERNS[pk];
+    if(line){
+      patternEl.textContent = line;
+      patternEl.classList.remove('hidden');
+    } else {
+      patternEl.classList.add('hidden');
+      patternEl.textContent = '';
+    }
+  } else {
+    patternEl.classList.add('hidden');
+    patternEl.textContent = '';
+  }
 
   const ul = document.getElementById('signals');
   ul.innerHTML = '';
@@ -490,7 +745,8 @@ function render(){
     num.className = 'num';
     num.textContent = String(i + 1).padStart(2, '0');
     const text = document.createElement('span');
-    text.textContent = SIGNALS[r.key];
+    const signalSeed = r.key + '|' + r.score + '|' + overallHealth + '|' + scoreSeed;
+    text.textContent = pickVariant(SIGNALS[r.key], signalSeed);
     li.appendChild(num);
     li.appendChild(text);
     ul.appendChild(li);
