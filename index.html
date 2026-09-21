@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parent Reset Scan</title>
+<title>Parent Report Card</title>
 <style>
   :root{
     --forest:#2f5233;--forest-soft:#3f6b45;--cream:#f7f3e8;--cream-card:#fbf8f0;
     --ink:#20301f;--ink-soft:#4a5a48;--gold:#e8b23a;--gold-soft:#f2d489;
     --line:#d9d2be;--shadow:rgba(35,54,33,.10);
+    --bus-yellow:#F5C518;--leaf-green:#3C6B45;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -54,17 +55,17 @@
 <div class="wrap">
 
   <section id="intro">
-    <p class="eyebrow">Parent Reset Scan · from the authors of Back to School for Parents</p>
-    <h1>Where did you drop off the list?</h1>
+    <p class="eyebrow">Parent Report Card · from Joe and Lori Miller</p>
+    <h1>Something’s off — let’s see how you’re really doing</h1>
     <div class="gold-rule"></div>
-    <p class="lede">You already know you're tired. What you may not know is <em>which</em> part of your life is doing the most quiet leaking, and why the others feel harder because of it. This scan finds your number-one leak in about four minutes.</p>
+    <p class="lede">You’re not looking for a grade. You want to do better as a parent and as a person. This short check mirrors how life is actually running right now, then gives you one small move and a clear next step.</p>
     <div class="intro-meta">
-      <div><b>30</b>quick questions</div>
-      <div><b>~4 min</b>no overthinking</div>
-      <div><b>1 result</b>your biggest leak</div>
+      <div><b>30</b>questions</div>
+      <div><b>~4 min</b>about four minutes</div>
+      <div><b>One honest picture</b>not a ranking of subjects</div>
     </div>
-    <button class="btn" onclick="start()">Start the scan</button>
-    <p class="fineprint" style="margin-top:20px;">Two licensed counselors built this. Nothing here is a diagnosis. It's a mirror.</p>
+    <button class="btn" onclick="start()">Start the Report Card</button>
+    <p class="fineprint" style="margin-top:20px;">Two licensed counselors built this. Nothing here is a diagnosis. It’s a mirror.</p>
   </section>
 
   <section id="quiz" class="hidden">
@@ -84,19 +85,14 @@
 
   <section id="building" class="hidden">
     <div class="building">
-      <h2>Reading your results...</h2>
-      <p class="fineprint">Finding the one area doing the most quiet damage.</p>
+      <h2>Putting your picture together…</h2>
+      <p class="fineprint">One honest look at how life is running right now.</p>
     </div>
   </section>
 
 </div>
 
 <script>
-/* =========================================================
-   RESULT PAGE URL
-   Set this to wherever result.html lives on your site.
-   The scan appends ?s=<scores> and sends the person there.
-   ========================================================= */
 const RESULT_PAGE = "result.html";
 
 const SCALE = [
@@ -106,8 +102,9 @@ const SCALE = [
   {t:"Almost always", v:3}
 ];
 
-/* The ten areas + 3 behavior items each. ORDER IS FIXED and must
-   match result.html exactly, because scores are passed positionally. */
+/* Ten internal area keys + 3 behavior items each. ORDER IS FIXED and must
+   match result.html exactly; scores are passed positionally. Area names are
+   never shown on results. */
 const AREAS = [
   {key:"physical", q:[
     {t:"I move my body on purpose most days, even if it's just a walk."},
@@ -195,7 +192,6 @@ function prev(){if(idx>0){idx--;render();window.scrollTo({top:0,behavior:'smooth
 
 function finish(){
   document.getElementById('pfill').style.width='100%';
-  // score each area 0-10, in fixed AREAS order
   const scores = AREAS.map(a=>{
     let raw=0;
     a.q.forEach(item=>{
@@ -204,9 +200,8 @@ function finish(){
       if(item.rev) val = 3 - val;
       raw += val;
     });
-    return Math.round((raw/9)*10); // 0..10
+    return Math.round((raw/9)*10); // 0..10 health per area
   });
-  // hand off: scores encoded positionally, e.g. ?s=7,3,5,2,8,4,6,5,3,7
   const url = `${RESULT_PAGE}?s=${scores.join(',')}`;
   document.getElementById('quiz').classList.add('hidden');
   document.getElementById('building').classList.remove('hidden');

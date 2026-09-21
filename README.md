@@ -1,8 +1,9 @@
-# Parent Reset Scan
+# Parent Report Card
 
-Prototype of the **Parent Reset Scan** for *Back to School for Parents* (Joe & Lori Miller).
+Live GitHub Pages site for the **Parent Report Card** (*Back to School for Parents* / Joe & Lori Miller).
 
-- Open the live site root for the scan (`index.html`)
-- Results render at `result.html` with scores in the URL
+- Quiz: `index.html`
+- Results: `result.html` (scores in the URL query string)
+- Live: https://lorir7777.github.io/parent-reset-scan/
 
-This is a static front-end prototype (not clinical; not a diagnosis).
+v2 publishes the Report Card framing (no area verdict on results; universal companion). This is a static front-end prototype (not clinical; not a diagnosis).
