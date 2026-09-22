@@ -6,7 +6,7 @@
 <title>Parent Report Card</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Permanent+Marker&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --bus-yellow: #F5C518;
@@ -240,65 +240,19 @@ a:hover{color:var(--link-hover)}
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:6px;
-  overflow:visible;
+  padding:4px;
+  overflow:hidden;
   position:relative;
 }
-.grade-stamp{
-  position:relative;
-  width:86px;
-  height:86px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transform:rotate(32deg);
-  transform-origin:center center;
-}
-.grade-circle{
-  position:absolute;
-  inset:0;
+.hero-mark img{
+  display:block;
   width:100%;
   height:100%;
-  pointer-events:none;
-}
-.grade-frac{
-  position:relative;
-  z-index:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  line-height:.85;
-  color:#D32F2F;
-  font-family:"Permanent Marker", "Segoe Print", "Comic Sans MS", cursive;
-  font-weight:400;
-  text-align:center;
-  filter:drop-shadow(0.5px 0.5px 0 rgba(120,20,20,.15));
-}
-.grade-top{
-  font-size:34px;
-  line-height:1;
-  margin-bottom:-2px;
-}
-.grade-slash{
-  font-size:22px;
-  line-height:0.6;
-  transform:rotate(-18deg) translateX(2px);
-  margin:1px 0 2px;
-  opacity:.95;
-}
-.grade-bottom{
-  font-size:22px;
-  line-height:1;
-  letter-spacing:-.02em;
+  object-fit:contain;
 }
 @media (max-width:520px){
   .hero-card{gap:14px;padding:18px 16px 16px}
   .hero-mark{width:84px;height:84px}
-  .grade-stamp{width:72px;height:72px}
-  .grade-top{font-size:28px}
-  .grade-bottom{font-size:18px}
-  .grade-slash{font-size:18px}
 }
 
 .hero-card-copy{display:flex;flex-direction:column;justify-content:center;gap:6px;min-width:0}
@@ -322,24 +276,7 @@ a:hover{color:var(--link-hover)}
     <p class="eyebrow">For parents who never get a back-to-school</p>
     <div class="hero-card" aria-label="Parent Report Card">
       <div class="hero-mark" aria-hidden="true">
-        <div class="grade-stamp">
-          <svg class="grade-circle" viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M52 8
-              C78 10, 94 28, 93 52
-              C92 78, 72 94, 48 93
-              C24 92, 7 74, 8 48
-              C9 24, 28 7, 52 8
-              C58 8, 62 9, 66 11"
-              fill="none" stroke="#D32F2F" stroke-width="3.2"
-              stroke-linecap="round" stroke-linejoin="round"
-              opacity="0.92"/>
-          </svg>
-          <div class="grade-frac">
-            <span class="grade-top">?</span>
-            <span class="grade-slash">/</span>
-            <span class="grade-bottom">100</span>
-          </div>
-        </div>
+        <img src="grade-mark.png" alt="" width="92" height="92">
       </div>
       <div class="hero-card-copy">
         <p class="hero-card-title">Parent Report Card</p>
