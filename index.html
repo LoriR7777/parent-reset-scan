@@ -57,53 +57,81 @@ a:hover{color:var(--link-hover)}
   background:var(--gradient-sky);
   padding:56px 24px 72px;
 }
-.hero-inner{max-width:var(--measure-hero);margin:0 auto}
+.hero-inner{
+  max-width:440px;
+  margin:0 auto;
+}
+.hero-mark{
+  display:block;
+  width:140px;
+  height:140px;
+  margin:0 auto 20px;
+  object-fit:contain;
+}
 .eyebrow{
   font-family:var(--font-display);
-  font-size:19px;font-weight:600;
-  letter-spacing:.22em;text-transform:uppercase;
+  font-size:15px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
   color:var(--leaf-green-deep);
-  margin:0 0 12px;
-}
-.byline{
-  font-family:var(--font-display);
-  font-size:14px;font-weight:500;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--leaf-green);
-  margin:0 0 24px;
+  margin:0 0 10px;
+  text-align:left;
 }
 .hero h1{
-  font-size:clamp(44px, 6.4vw, 82px);
+  font-size:clamp(40px, 9vw, 72px);
   line-height:.92;
   letter-spacing:-.01em;
   color:var(--near-black);
-  max-width:18ch;
-  margin:0 0 24px;
+  margin:0 0 16px;
+  max-width:12ch;
+}
+.hero-sub{
+  font-family:var(--font-body);
+  font-size:clamp(22px, 3.2vw, 28px);
+  font-weight:700;
+  line-height:1.25;
+  color:var(--near-black);
+  margin:0 0 22px;
+  max-width:28ch;
+  text-wrap:pretty;
+}
+.checklist{
+  list-style:none;
+  margin:0 0 22px;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.checklist li{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:18px;
+  font-weight:600;
+  line-height:1.3;
+  color:var(--near-black);
+}
+.checklist .check{
+  flex:0 0 auto;
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:var(--leaf-green-deep);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.checklist .check svg{
+  display:block;
+  width:12px;
+  height:12px;
 }
 .lede{
-  font-size:clamp(19px, 2vw, 24px);
-  line-height:1.35;
+  font-size:clamp(17px, 2vw, 19px);
+  line-height:1.45;
   color:var(--blue-slate);
-  max-width:38ch;
-  margin:0 0 32px;
-}
-.meta{
-  display:flex;flex-wrap:wrap;gap:32px;
-  margin:0 0 44px;
-}
-.meta-item{display:flex;flex-direction:column;gap:4px}
-.meta-num{
-  font-family:var(--font-display);
-  font-size:32px;font-weight:700;
-  color:var(--bus-yellow);
-  line-height:1;
-  letter-spacing:-.01em;
-}
-.meta-label{
-  font-family:var(--font-display);
-  font-size:13px;font-weight:500;
-  letter-spacing:.12em;text-transform:uppercase;
-  color:var(--leaf-green-deep);
+  max-width:36ch;
+  margin:0 0 28px;
 }
 .btn{
   display:inline-block;
@@ -118,11 +146,13 @@ a:hover{color:var(--link-hover)}
   border-bottom:var(--button-edge);
   text-decoration:none;
   transition:background var(--transition-button), transform var(--transition-button);
+  width:100%;
+  text-align:center;
 }
 .btn:hover{background:var(--bus-yellow-light);transform:translateY(-2px)}
 .fineprint{
-  margin:24px 0 0;
-  font-size:16px;
+  margin:20px 0 0;
+  font-size:15px;
   color:var(--blue-slate);
   max-width:42ch;
 }
@@ -210,61 +240,17 @@ a:hover{color:var(--link-hover)}
 }
 .building p{color:var(--blue-slate);margin:0}
 
+@media(min-width:640px){
+  .hero-mark{width:170px;height:170px;margin-bottom:24px}
+  .hero-inner{max-width:460px}
+  .eyebrow{font-size:16px}
+  .checklist li{font-size:19px}
+  .checklist .check{width:24px;height:24px}
+  .checklist .check svg{width:13px;height:13px}
+}
 @media(max-width:520px){
   .hero{padding:44px 20px 56px}
-  .btn{width:100%;text-align:center;padding:18px 24px;font-size:20px}
-  .meta{gap:24px}
-}
-
-.hero-card{
-  display:flex;
-  align-items:stretch;
-  gap:20px;
-  max-width:520px;
-  background:var(--white);
-  border:1px solid var(--card-border);
-  border-radius:var(--radius-card);
-  border-bottom:5px solid var(--bus-yellow);
-  padding:22px 24px 20px;
-  margin:0 0 28px;
-  box-shadow:0 10px 28px rgba(23,21,18,.08);
-}
-.hero-mark{
-  flex:0 0 auto;
-  width:100px;
-  height:100px;
-  background:var(--cream);
-  border:1px solid var(--card-border);
-  border-radius:var(--radius-card);
-  border-bottom:4px solid var(--bus-yellow);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:4px;
-  overflow:hidden;
-  position:relative;
-}
-.hero-mark img{
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
-}
-@media (max-width:520px){
-  .hero-card{gap:14px;padding:18px 16px 16px}
-  .hero-mark{width:84px;height:84px}
-}
-
-.hero-card-copy{display:flex;flex-direction:column;justify-content:center;gap:6px;min-width:0}
-.hero-card-title{
-  font-family:var(--font-display);
-  font-size:clamp(26px, 3.2vw, 34px);
-  font-weight:700;
-  line-height:.95;
-  letter-spacing:-.01em;
-  text-transform:uppercase;
-  color:var(--near-black);
-  margin:0;
+  .btn{padding:18px 24px;font-size:20px}
 }
 
 </style>
@@ -273,31 +259,16 @@ a:hover{color:var(--link-hover)}
 
 <section id="intro" class="hero">
   <div class="hero-inner">
+    <img class="hero-mark" src="grade-mark.png" alt="" width="170" height="170">
     <p class="eyebrow">For parents who never get a back-to-school</p>
-    <div class="hero-card" aria-label="Parent Report Card">
-      <div class="hero-mark" aria-hidden="true">
-        <img src="grade-mark.png" alt="" width="92" height="92">
-      </div>
-      <div class="hero-card-copy">
-        <p class="hero-card-title">Parent Report Card</p>
-      </div>
-    </div>
-    <h1>You're showing up for everyone. Who's showing up for you?</h1>
-    <p class="lede">You're not chasing a grade. You want to feel like yourself without stepping away from your family. Take the quiz and see how that tension shows up in the way life is actually running.</p>
-    <div class="meta">
-      <div class="meta-item">
-        <span class="meta-num">30</span>
-        <span class="meta-label">Questions</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-num">~4</span>
-        <span class="meta-label">Minutes</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-num">01</span>
-        <span class="meta-label">Honest picture</span>
-      </div>
-    </div>
+    <h1>Parent Report Card</h1>
+    <p class="hero-sub">You're showing up for everyone. Who's showing up for you?</p>
+    <ul class="checklist">
+      <li><span class="check" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 6.2L4.8 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Free quiz</li>
+      <li><span class="check" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 6.2L4.8 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Takes only 4 minutes</li>
+      <li><span class="check" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 6.2L4.8 8.5L9.5 3.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>See how you score</li>
+    </ul>
+    <p class="lede">You're not chasing a grade. You want to feel like yourself without stepping away from your family.</p>
     <button class="btn" type="button" onclick="start()">Take the Quiz</button>
     <p class="fineprint">This is not therapy or a diagnosis.</p>
   </div>
