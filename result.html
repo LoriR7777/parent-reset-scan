@@ -238,47 +238,52 @@ a:hover{color:var(--link-hover)}
 }
 
 .bridge-band{
-  background:var(--leaf-green);
+  background:var(--cream);
   padding:84px 24px;
-  color:var(--cream-on-green);
+  color:var(--near-black);
 }
-.bridge-band .section-label{color:var(--bus-yellow)}
+.bridge-band .section-label{color:var(--leaf-green-deep)}
 .bridge-band h2{
   font-size:clamp(30px, 4vw, 46px);
   line-height:1.02;
   letter-spacing:-.01em;
-  color:var(--bus-yellow);
+  color:var(--near-black);
   margin:0 0 20px;
   max-width:18ch;
 }
 .bridge-band p{
   font-size:19px;
   line-height:1.55;
-  color:var(--cream-on-green);
+  color:var(--blue-slate);
   margin:0 0 16px;
   max-width:40ch;
 }
 .bridge-band p:last-child{margin-bottom:0}
 
-.gate-band{padding:84px 24px}
+.gate-band{
+  background:var(--leaf-green);
+  padding:84px 24px;
+  color:var(--cream-on-green);
+}
 .gate-card{
-  background:var(--white);
-  border:1px solid var(--card-border);
-  border-radius:var(--radius-card);
-  padding:32px 28px;
+  background:transparent;
+  border:none;
+  border-radius:0;
+  padding:0;
   max-width:var(--measure-prose);
   margin:0 auto;
 }
+.gate-card .eyebrow{color:var(--bus-yellow);margin:0 0 12px}
 .gate-card h3{
   font-size:26px;
   line-height:1.05;
   letter-spacing:-.01em;
-  color:var(--near-black);
+  color:var(--bus-yellow);
   margin:0 0 12px;
 }
 .gate-card .gate-copy{
   font-size:18px;
-  color:var(--blue-slate);
+  color:var(--cream-on-green);
   margin:0 0 24px;
   max-width:42ch;
 }
@@ -288,9 +293,9 @@ a:hover{color:var(--link-hover)}
   padding:14px 16px;
   font-family:var(--font-body);
   font-size:18px;
-  border:1px solid var(--card-border);
+  border:1px solid transparent;
   border-radius:var(--radius-field);
-  background:var(--cream-tint);
+  background:var(--cream);
   color:var(--near-black);
 }
 .gate-form input:focus{
@@ -317,7 +322,7 @@ a:hover{color:var(--link-hover)}
 .gate-msg{
   margin:16px 0 0;
   font-size:16px;
-  color:var(--blue-slate);
+  color:var(--cream-on-green);
 }
 
 .cta-band{
