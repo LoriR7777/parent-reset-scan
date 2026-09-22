@@ -445,17 +445,17 @@ a:hover{color:var(--link-hover)}
         <div class="legend-card" data-band="high" role="listitem">
           <p class="legend-range">70–100</p>
           <p class="legend-name">Holding on</p>
-          <p class="legend-helper">You're still standing. You're running low on you.</p>
+          <p class="legend-helper">You're keeping things running. Your reserves are starting to thin.</p>
         </div>
         <div class="legend-card" data-band="mid" role="listitem">
           <p class="legend-range">40–69</p>
           <p class="legend-name">Stretched</p>
-          <p class="legend-helper">You're showing up, but there's not much left for you.</p>
+          <p class="legend-helper">You're getting everyone where they need to go. You're running on fumes.</p>
         </div>
         <div class="legend-card" data-band="low" role="listitem">
           <p class="legend-range">Under 40</p>
           <p class="legend-name">Worn out</p>
-          <p class="legend-helper">You're worn out from putting everyone first.</p>
+          <p class="legend-helper">You've been running on empty for a while now.</p>
         </div>
       </div>
     </div>
@@ -530,54 +530,54 @@ const AREA_KEYS = [
 /* Lived-language signal lines. Never print area names. */
 const SIGNALS = {
   sleep: [
-    "Late nights that feel like the only time that's yours — and mornings that pay for it",
-    "You're running on leftover sleep, and it shows by mid-afternoon",
-    "Bedtime keeps sliding, and the next day starts already behind"
+    "You stay up late because it's the only time that feels like yours, then pay for it the next morning",
+    "You protect your kids' bedtime like it's sacred, but yours slides a little later every night",
+    "After a short night, small things set you off and you're not sure why"
   ],
   physical: [
-    "Your body is last on the list, and it's starting to show",
-    "You keep meaning to take care of yourself — and the week keeps winning",
-    "Meals, movement, checkups: they wait until everything else is done"
+    "Everyone else's appointments get made while your own checkups keep getting pushed",
+    "Coffee and whatever's left on the kids' plates are getting you through the day",
+    "\"No time\" has become the permanent reason movement keeps waiting"
   ],
   mental: [
-    "Stress sticks; small things land harder than they should",
-    "Your mind stays on after the house goes down",
-    "You're carrying worry that doesn't get a break"
+    "You tell yourself it's not that bad because other parents seem to manage",
+    "Small things hit harder than they should, and you can't always tell where it's coming from",
+    "You shut down or keep the peace instead of saying what you actually need"
   ],
   financial: [
-    "Money hums in the background and raises the volume on everything else",
-    "Bills and budgets sit in the back of your mind all day",
-    "Money decisions feel heavy even when you're paying attention"
+    "Money sits in the background like a hum of dread, even on good days",
+    "You avoid checking the balance because you'd rather not know right now",
+    "You and your partner talk around money more than you talk about it"
   ],
   career: [
-    "Work and home are bleeding into each other",
-    "You're still answering work after the kids need you",
-    "The job takes more than the hours on the calendar"
+    "A hard day at work rides home with you as a shorter fuse at dinner",
+    "You've put your own growth on hold \"until the kids are older\"",
+    "You feel guilty for wanting more at work, or resentful about what you've given up"
   ],
   partnership: [
-    "You and your partner are mostly logistics, not a team",
-    "You talk about schedules more than you talk about each other",
-    "There's little room left for the two of you outside the kids"
+    "Most of your conversations are about who's doing pickup and whether you're out of milk",
+    "You run the house well together, but you don't feel much like a couple",
+    "Little things blow up into big fights, and neither of you is sure why"
   ],
   presence: [
-    "You're in the room with your kids, but not really there",
-    "You're half-listening while your mind is already on the next thing",
-    "The moments with them pass while you're still catching up"
+    "You're in the room with your kids, but your phone and your mind are somewhere else",
+    "Most of your time with them goes to correcting, reminding, and managing",
+    "You're so busy getting them everywhere that there's little time left to just be with them"
   ],
   identity: [
-    "You've lost track of who you are outside of parenting",
-    "Your own interests keep getting pushed to next month",
-    "You remember yourself in pieces, not as a whole person"
+    "The things you used to love are boxed up in the garage or pushed to the back of your mind",
+    "Spending time or money on yourself feels selfish when so many people count on you",
+    "If someone asked what you enjoy outside of being a parent, you'd have to think about it"
   ],
   social: [
-    "You've lost touch with people outside the house",
-    "Friendships wait while family takes every free hour",
-    "You miss having people who know you beyond the kids"
+    "Most of your adult conversations happen on the sidelines of your kids' activities",
+    "You keep meaning to reach out to a friend, and then the week gets away from you",
+    "You feel lonely at the end of the day, even in a house full of people"
   ],
   home: [
-    "Mornings and evenings feel like constant scramble",
-    "The house runs on urgency from wake-up to bedtime",
-    "Routines keep breaking, and restarting them takes more than you have"
+    "Every morning feels like starting from scratch",
+    "You're the one carrying the mental list of who needs what, and when",
+    "By dinnertime, one more decision feels like one too many"
   ]
 };
 
@@ -585,44 +585,44 @@ const SIGNALS = {
 const BANDS = {
   high: [
     {
-      headline: "You're still on the list — barely",
-      recog: "You're showing up for your family, and enough of you is still intact that it doesn't look like a crisis from the outside. The friction you feel is the cost of keeping everyone else's life moving. You're not failing. You're early enough to do something about it on purpose."
+      headline: "You're getting it done. You're paying for it.",
+      recog: "From the outside, you look like a parent who has it handled. Mostly, you do. But you're spending more than you're putting back, and your body and your patience are keeping score even if nobody else is. This is the best possible time to notice. You don't need a crisis to earn a fresh start."
     },
     {
-      headline: "You're holding the line — for now",
-      recog: "From the outside, things look steady. Inside, you're spending more of yourself than you're putting back. That gap is real, even if no one else sees it yet. Naming it now means you can act before it gets louder."
+      headline: "Handled on the outside. Running low on the inside.",
+      recog: "The forms get signed and the lunches get made. What doesn't get made is much time for you. Right now that looks like a shorter fuse than you'd like, or a tiredness coffee doesn't touch. None of this means you're doing it wrong. It means you're early enough to change course on purpose instead of by force."
     },
     {
-      headline: "You're managing — and it's costing you",
-      recog: "You're keeping the days moving. The price is that there's less of you left after everyone else is sorted. You don't need a crisis to deserve a fresh start. You need room on your own list again."
+      headline: "You're pushing through. Again.",
+      recog: "You give yourself credit for pulling it off every week, and you should. But pushing through has a cost, and it adds up in ways you don't always see until later. Think of this as your own back-to-school moment. A few small changes now will go further than a big overhaul later."
     }
   ],
   mid: [
     {
-      headline: "You've dropped off your own list",
-      recog: "You keep showing up for everyone. Somewhere along the way, you stopped making room for yourself. From the outside it may look fine. Inside, the load is real. Naming that is the start of a fresh start — not a grade."
+      headline: "Everyone got ready for the new year but you",
+      recog: "The kids have what they need. The calendar is full. Somewhere in there, your own needs got moved to \"later,\" and later hasn't come. You still get through the day, but there's not much of you left at the end of it. That isn't a character flaw. It's what happens when you're the one holding everything together."
     },
     {
-      headline: "Everyone else comes first. You don't.",
-      recog: "You're still showing up. What's missing is anything left for you when the day is done. That isn't a character flaw. It's what happens when family takes every open hour. You can put yourself back on the list without leaving anyone behind."
+      headline: "You're running on the same fumes as last year",
+      recog: "You keep telling yourself you'll get it together once things calm down. As therapists, we can tell you things rarely calm down on their own. The irritability, the fog, the sense that you misplaced yourself somewhere along the way: those are signals, not failures. You don't have to fix all ten areas. You just have to pick a place to start."
     },
     {
-      headline: "You're showing up. You're not okay.",
-      recog: "You get through the days. People depend on you, and you deliver. What doesn't get delivered is care for yourself. That gap is why you feel worn down even when nothing looks broken. A fresh start starts with admitting that."
+      headline: "You take care of everyone. Who's taking care of you?",
+      recog: "People count on you, and you deliver. The one person who keeps getting skipped is you. Over time that shows up as snapping at small things, forgetting what you enjoy, or feeling far away even when you're in the room. Taking care of yourself isn't stealing from your kids. It's what lets you keep giving to them."
     }
   ],
   low: [
     {
-      headline: "Family got you. You got lost.",
-      recog: "You're not lazy. You're not broken. You kept putting your family first until there wasn't much left for you. When the whole day is asking at once, you stop feeling like yourself. That doesn't mean you're failing. It means you're worn out — and you can still make a fresh start."
+      headline: "Your old ways of coping can't hold the weight anymore",
+      recog: "For years you held it all together, even when it took more out of you than it should have. Then the load got heavier, and the strategies that used to get you through stopped working. That's not weakness. We see it every week in our office, in good people who have been running on empty too long. You can rebuild, one small step at a time."
     },
     {
-      headline: "There's nothing left on your list but them",
-      recog: "You've given so much to the people you love that your own needs barely register. That isn't love failing. That's love without a refill. Putting yourself back on the list is how you keep showing up — for them and for you."
+      headline: "You've given so much there's not much of you left",
+      recog: "You've poured everything into the people you love, and your own needs barely register anymore. You might be snapping over things that wouldn't have bothered you a year ago, then feeling guilty about it later. That's what running on empty looks like. It doesn't make you a bad parent. It means you need a refill, and you're allowed to have one."
     },
     {
-      headline: "You're worn out from putting everyone first",
-      recog: "The days ask more than you have. You've answered anyway. Now you're running on empty, and it shows in how little of you feels like you. This isn't the end of the story. It's the point where a fresh start matters most."
+      headline: "You're running on empty, and you know it",
+      recog: "Every day takes more than you have, and you've kept giving anyway. Now it's showing up in your body, your patience, and how little of the day feels like it belongs to you. This is not the end of the story. It's the point where a fresh start matters most, and where small changes make the biggest difference."
     }
   ]
 };
@@ -630,28 +630,28 @@ const BANDS = {
 const BAND_META = {
   high: {
     name: "Holding on",
-    helper: "You're still standing. You're running low on you."
+    helper: "You're keeping things running. Your reserves are starting to thin."
   },
   mid: {
     name: "Stretched",
-    helper: "You're showing up, but there's not much left for you."
+    helper: "You're getting everyone where they need to go. You're running on fumes."
   },
   low: {
     name: "Worn out",
-    helper: "You're worn out from putting everyone first."
+    helper: "You've been running on empty for a while now."
   }
 };
 
 /* Known strain pairs → one lived-language combo line. Keys sorted alphabetically. */
 const PATTERNS = {
-  "identity|sleep": "When sleep is short and you can't find yourself outside parenting, the whole week feels like someone else's life.",
-  "partnership|presence": "When you and your partner are mostly logistics, it's harder to be fully there with the kids too.",
-  "career|home": "When work spills past the clock and home never settles, there's no clean place to land.",
-  "identity|social": "When you've lost yourself and lost touch with friends, there's nowhere left that feels like yours.",
-  "mental|sleep": "When your mind won't rest and nights stay short, the next day starts already behind.",
-  "physical|sleep": "When your body is last and sleep keeps slipping, you feel it in every hour that follows.",
-  "identity|partnership": "When the two of you are all logistics and you've lost track of who you are, both of you feel the gap.",
-  "home|presence": "When mornings scramble and you're only half there, the kids feel it even when you don't say a word."
+  "identity|sleep": "When the only time that feels like yours comes after everyone's asleep, you end up trading sleep just to feel like a person again.",
+  "partnership|presence": "When you and your partner are mostly running logistics, it's harder to be fully there for your kids, and they notice.",
+  "career|home": "When work follows you home and the house runs on scramble, there's no point in the day where you get to set anything down.",
+  "identity|social": "When you've lost touch with your friends and with the parts of yourself you used to enjoy, parenting starts to feel like the only thing you are.",
+  "mental|sleep": "When your mind won't shut off and your nights are short, small things start to feel like big threats. Your tired brain is misreading the room.",
+  "physical|sleep": "When your body is last on the list and sleep keeps getting cut short, you feel it in your energy, your patience, and your mood all day long.",
+  "identity|partnership": "When you and your partner are mostly managing the house and you've lost track of who you are, it's hard to remember what brought the two of you together.",
+  "home|presence": "When mornings are chaos and you're only half there, your kids feel it even if nobody says a word."
 };
 
 function hashStr(str){
