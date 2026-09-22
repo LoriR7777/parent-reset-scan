@@ -246,17 +246,20 @@ a:hover{color:var(--link-hover)}
 }
 .hero-mark-score{
   font-family:var(--font-display);
-  font-size:28px;font-weight:700;
+  font-size:26px;font-weight:700;
   line-height:1;
-  letter-spacing:-.02em;
-  color:var(--ink-faint, #B9AE95);
+  letter-spacing:.04em;
+  color:var(--blue-slate);
+  opacity:.55;
 }
 .hero-mark-label{
   font-family:var(--font-display);
   font-size:9px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;
+  letter-spacing:.12em;text-transform:uppercase;
   color:var(--leaf-green-deep);
+  margin-top:4px;
 }
+
 .hero-card-copy{display:flex;flex-direction:column;justify-content:center;gap:6px;min-width:0}
 .hero-card-kicker{
   font-family:var(--font-display);
@@ -298,6 +301,7 @@ a:hover{color:var(--link-hover)}
     <div class="hero-card" aria-label="Parent Report Card">
       <div class="hero-mark" aria-hidden="true">
         <span class="hero-mark-score">__/100</span>
+        <span class="hero-mark-label">Your mark</span>
       </div>
       <div class="hero-card-copy">
         <p class="hero-card-title">Parent Report Card</p>
