@@ -80,8 +80,8 @@ a:hover{color:var(--link-hover)}
 }
 .mark{
   flex:0 0 auto;
-  width:120px;
-  height:120px;
+  width:176px;
+  height:176px;
   background:var(--cream);
   border:1px solid var(--card-border);
   border-radius:var(--radius-card);
@@ -89,7 +89,7 @@ a:hover{color:var(--link-hover)}
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:8px;
+  padding:10px;
 }
 .mark-circle{
   position:relative;
@@ -119,38 +119,20 @@ a:hover{color:var(--link-hover)}
 }
 .mark-num{
   font-family:var(--font-display);
-  font-size:36px;font-weight:700;
+  font-size:54px;font-weight:700;
   line-height:1;
   letter-spacing:-.02em;
   color:var(--near-black);
 }
 .mark-denom{
   font-family:var(--font-display);
-  font-size:14px;font-weight:600;
+  font-size:18px;font-weight:600;
   letter-spacing:.02em;
   color:var(--near-black);
   line-height:1;
   opacity:.78;
 }
 .hero-copy{flex:1 1 auto;min-width:0}
-.band-tag{
-  margin:0 0 10px;
-}
-.band-name{
-  font-family:var(--font-display);
-  font-size:15px;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:var(--leaf-green-deep);
-  display:block;
-}
-.band-helper{
-  font-family:var(--font-body);
-  font-size:16px;
-  line-height:1.4;
-  color:var(--blue-slate);
-  margin:6px 0 0;
-  max-width:36ch;
-}
 .finding{
   font-size:clamp(32px, 4.4vw, 54px);
   line-height:.96;
@@ -184,8 +166,9 @@ a:hover{color:var(--link-hover)}
   border-bottom-color:var(--bus-yellow-deep);
 }
 .legend-card.active .legend-name{
-  font-size:21px;
-  letter-spacing:.06em;
+  font-size:28px;
+  letter-spacing:.04em;
+  color:var(--leaf-green-deep);
 }
 .legend-range{
   font-family:var(--font-display);
@@ -280,19 +263,21 @@ a:hover{color:var(--link-hover)}
   color:var(--cream);
 }
 .cta-inner{
-  max-width:960px;
+  max-width:640px;
   margin:0 auto;
-  display:grid;
-  grid-template-columns:230px 1fr;
-  gap:48px;
+  display:flex;
+  flex-direction:column;
   align-items:center;
+  gap:36px;
+  text-align:center;
 }
 .book-cover{
-  width:230px;height:auto;
-  border-radius:var(--radius-cover);
+  width:240px;height:auto;
+  border-radius:0;
   display:block;
-  box-shadow:var(--shadow-cover-dark);
   background:transparent;
+  box-shadow:none;
+  filter:drop-shadow(0 18px 28px rgba(0,0,0,.45));
 }
 .cta-copy .eyebrow{color:var(--bus-yellow);margin-bottom:12px}
 .cta-copy h2{
@@ -302,23 +287,37 @@ a:hover{color:var(--link-hover)}
   color:var(--cream);
   margin:0 0 12px;
 }
+.cta-copy{
+  width:100%;
+  text-align:center;
+}
 .cta-copy .authors{
   font-family:var(--font-display);
   font-size:14px;font-weight:500;
   letter-spacing:.12em;text-transform:uppercase;
   color:var(--cream-on-green);
-  margin:0 0 16px;
+  margin:0 auto 16px;
   text-align:center;
-  width:100%;
+  display:block;
+  width:max-content;
+  max-width:100%;
   opacity:.9;
+}
+.cta-copy h2{
+  text-align:center;
 }
 .cta-copy p{
   font-size:18px;
   line-height:1.55;
   color:var(--cream);
-  margin:0 0 28px;
+  margin:0 auto 28px;
   max-width:38ch;
   opacity:.92;
+  text-align:center;
+}
+.cta-copy .btn{
+  margin-left:auto;
+  margin-right:auto;
 }
 .btn{
   display:inline-block;
@@ -372,13 +371,13 @@ a:hover{color:var(--link-hover)}
 
 @media(max-width:640px){
   .hero-top{flex-direction:column;gap:20px}
-  .mark{width:112px;height:112px}
-  .mark-num{font-size:32px}
-  .mark-denom{font-size:13px}
+  .mark{width:152px;height:152px}
+  .mark-num{font-size:46px}
+  .mark-denom{font-size:16px}
   .mark-legend{grid-template-columns:1fr;gap:10px}
-  .legend-card.active .legend-name{font-size:20px}
-  .cta-inner{grid-template-columns:1fr;gap:28px;justify-items:center;text-align:center}
-  .book-cover{width:min(220px,58vw)}
+  .legend-card.active .legend-name{font-size:26px}
+  .cta-inner{gap:28px}
+  .book-cover{width:min(240px,58vw)}
   .cta-copy p{margin-left:auto;margin-right:auto}
   .cta-copy .btn{width:100%}
   .btn{padding:18px 24px;font-size:20px}
@@ -402,11 +401,7 @@ a:hover{color:var(--link-hover)}
           </div>
         </div>
         <div class="hero-copy">
-          <div class="band-tag">
-            <span class="band-name" id="bandName"></span>
-            <p class="band-helper" id="bandHelper"></p>
-          </div>
-          <h1 class="finding" id="headline"></h1>
+<h1 class="finding" id="headline"></h1>
         </div>
       </div>
       <p class="recog" id="recog"></p>
@@ -449,7 +444,7 @@ a:hover{color:var(--link-hover)}
 
   <div class="cta-band">
     <div class="cta-inner">
-      <img class="book-cover" src="cover-transparent.png" width="230" height="322" alt="Back to School for Parents book cover">
+      <img class="book-cover" src="cover-transparent.png" width="240" height="336" alt="Back to School for Parents book cover">
       <div class="cta-copy">
         <p class="eyebrow">The full plan</p>
         <h2>Back to School for Parents: 10 Essential Areas For Your Own Fresh Start</h2>
@@ -657,10 +652,6 @@ function render(){
 
   document.getElementById('markNum').textContent = String(overallHealth);
   document.getElementById('markDenom').textContent = '/100';
-
-  const meta = BAND_META[band];
-  document.getElementById('bandName').textContent = meta.name;
-  document.getElementById('bandHelper').textContent = meta.helper;
 
   const bandCopy = pickVariant(BANDS[band], scoreSeed);
   document.getElementById('headline').textContent = bandCopy.headline;
