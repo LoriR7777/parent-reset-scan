@@ -74,9 +74,8 @@ a:hover{color:var(--link-hover)}
 }
 .hero-top{
   display:flex;
-  gap:24px;
-  align-items:flex-start;
-  margin:0 0 20px;
+  justify-content:flex-start;
+  margin:0 0 16px;
 }
 .mark{
   flex:0 0 auto;
@@ -132,19 +131,18 @@ a:hover{color:var(--link-hover)}
   line-height:1;
   opacity:.78;
 }
-.hero-copy{flex:1 1 auto;min-width:0}
 .finding{
   font-size:clamp(32px, 4.4vw, 54px);
   line-height:.96;
   letter-spacing:-.01em;
   color:var(--near-black);
-  margin:0;
+  margin:24px 0 0;
 }
 .recog{
   font-size:clamp(18px, 1.8vw, 20px);
   line-height:1.5;
   color:var(--blue-slate);
-  margin:0 0 28px;
+  margin:16px 0 0;
   max-width:40ch;
 }
 
@@ -370,7 +368,7 @@ a:hover{color:var(--link-hover)}
 .err p{color:var(--blue-slate);margin:0 0 28px}
 
 @media(max-width:640px){
-  .hero-top{flex-direction:column;gap:20px}
+  .hero-top{margin-bottom:14px}
   .mark{width:152px;height:152px}
   .mark-num{font-size:46px}
   .mark-denom{font-size:16px}
@@ -400,11 +398,7 @@ a:hover{color:var(--link-hover)}
             </div>
           </div>
         </div>
-        <div class="hero-copy">
-<h1 class="finding" id="headline"></h1>
-        </div>
       </div>
-      <p class="recog" id="recog"></p>
       <div class="mark-legend" id="markLegend" role="list" aria-label="Mark bands">
         <div class="legend-card" data-band="high" role="listitem">
           <p class="legend-range">70–100</p>
@@ -422,6 +416,8 @@ a:hover{color:var(--link-hover)}
           <p class="legend-helper">You've been running on empty for a while now.</p>
         </div>
       </div>
+      <h1 class="finding" id="headline"></h1>
+      <p class="recog" id="recog"></p>
     </div>
   </div>
 
