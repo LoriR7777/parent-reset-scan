@@ -233,11 +233,62 @@ function init(){
   document.getElementById('gate').classList.remove('hidden');
 
   const form = document.getElementById('emailForm');
+  const MC = {
+    u: '7eaaa06d5985a6d7b4f05e2d2',
+    id: '49f258433f',
+    fId: '00895de7f0',
+    tag: '24289501',
+    honeypot: 'b_7eaaa06d5985a6d7b4f05e2d2_49f258433f'
+  };
+
+  function mailchimpSubscribe(email, name){
+    return new Promise(function(resolve){
+      var cb = 'mcJsonp_' + String(Date.now());
+      var done = false;
+      var script = document.createElement('script');
+      function finish(data){
+        if(done) return;
+        done = true;
+        try { delete window[cb]; } catch (err) { window[cb] = undefined; }
+        if(script.parentNode) script.parentNode.removeChild(script);
+        resolve(data || { result: 'error', msg: 'timeout' });
+      }
+      window[cb] = finish;
+      var url = 'https://lorimiller.us19.list-manage.com/subscribe/post-json'
+        + '?u=' + encodeURIComponent(MC.u)
+        + '&id=' + encodeURIComponent(MC.id)
+        + '&f_id=' + encodeURIComponent(MC.fId)
+        + '&EMAIL=' + encodeURIComponent(email)
+        + '&FNAME=' + encodeURIComponent(name || '')
+        + '&tags=' + encodeURIComponent(MC.tag)
+        + '&' + encodeURIComponent(MC.honeypot) + '='
+        + '&c=' + encodeURIComponent(cb);
+      script.src = url;
+      script.onerror = function(){ finish({ result: 'error', msg: 'network' }); };
+      document.body.appendChild(script);
+      setTimeout(function(){ finish({ result: 'error', msg: 'timeout' }); }, 8000);
+    });
+  }
+
+  function shouldUnlock(data){
+    if(!data) return true;
+    if(data.result === 'success') return true;
+    var m = String(data.msg || '').toLowerCase();
+    if(m.indexOf('already subscribed') !== -1) return true;
+    if(m.indexOf('too many') !== -1) return true;
+    if(data.msg === 'network' || data.msg === 'timeout') return true;
+    // Hard validation failures stay on the gate.
+    if(m.indexOf('invalid') !== -1 || m.indexOf('enter a value') !== -1) return false;
+    // Soft-fail open: never trap someone who already took the quiz.
+    return true;
+  }
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     const email = (document.getElementById('emailField').value || '').trim();
     const name = (document.getElementById('nameField').value || '').trim();
     const msg = document.getElementById('gateMsg');
+    const btn = form.querySelector('button[type="submit"]');
 
     if(!isValidEmail(email)){
       msg.textContent = 'Enter a valid email to continue.';
@@ -245,8 +296,6 @@ function init(){
       return;
     }
 
-    // Stub: persist for later Mailchimp wiring.
-    // TODO: Mailchimp embed or API
     try {
       sessionStorage.setItem('prc_email', email);
       if(name) sessionStorage.setItem('prc_name', name);
@@ -255,7 +304,17 @@ function init(){
       // sessionStorage may be blocked; still allow results.
     }
 
-    window.location.href = RESULT_PAGE + '?s=' + scoreStr;
+    msg.textContent = '';
+    if(btn){ btn.disabled = true; btn.textContent = 'Saving…'; }
+
+    mailchimpSubscribe(email, name).then(function(data){
+      if(!shouldUnlock(data)){
+        msg.textContent = (data && data.msg) ? String(data.msg).replace(/<[^>]+>/g, '') : 'Check that email and try again.';
+        if(btn){ btn.disabled = false; btn.textContent = 'Show my results'; }
+        return;
+      }
+      window.location.href = RESULT_PAGE + '?s=' + scoreStr;
+    });
   });
 }
 
