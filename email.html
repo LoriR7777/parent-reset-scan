@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>See your results · Parent Report Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bus-yellow: #F5C518;
+  --bus-yellow-light: #FFD433;
+  --bus-yellow-deep: #C79A05;
+  --sky-blue: #BEDCEE;
+  --sky-blue-light: #DCEBF5;
+  --leaf-green: #3C6B45;
+  --leaf-green-deep: #2F5B3A;
+  --leaf-green-muted: #9FB6A4;
+  --cream: #FBF4E4;
+  --cream-tint: #FDF7EA;
+  --cream-line: #EFE2C6;
+  --white: #FFFFFF;
+  --card-border: #E6DCC2;
+  --near-black: #171512;
+  --blue-slate: #2C4152;
+  --link: #2F6B8F;
+  --link-hover: #1E4C68;
+  --gradient-sky: linear-gradient(var(--sky-blue), var(--sky-blue-light) 70%, var(--cream));
+  --font-display: Oswald, "Arial Narrow", system-ui, sans-serif;
+  --font-body: "Source Sans 3", system-ui, sans-serif;
+  --radius-button: 4px;
+  --radius-card: 6px;
+  --radius-field: 4px;
+  --button-edge: 4px solid var(--bus-yellow-deep);
+  --transition-button: 120ms linear;
+  --measure-prose: 720px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--cream);
+  color:var(--near-black);
+  font-family:var(--font-body);
+  font-size:19px;
+  line-height:1.65;
+  text-wrap:pretty;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+h1,h2,h3{margin:0;font-family:var(--font-display);font-weight:700;text-transform:uppercase;text-wrap:balance}
+a{color:var(--link)}
+a:hover{color:var(--link-hover)}
+.hidden{display:none}
+
+.hero{
+  background:var(--gradient-sky);
+  padding:72px 24px 96px;
+  min-height:100vh;
+}
+.hero-inner{
+  max-width:480px;
+  margin:0 auto;
+}
+.eyebrow{
+  font-family:var(--font-display);
+  font-size:15px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--leaf-green-deep);
+  margin:0 0 16px;
+}
+.hero h1{
+  font-size:clamp(36px, 7vw, 52px);
+  line-height:.96;
+  letter-spacing:-.01em;
+  color:var(--near-black);
+  margin:0 0 18px;
+}
+.lede{
+  font-size:clamp(17px, 2vw, 19px);
+  line-height:1.5;
+  color:var(--blue-slate);
+  max-width:38ch;
+  margin:0 0 28px;
+}
+
+.gate-card{
+  background:var(--white);
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-card);
+  border-bottom:4px solid var(--bus-yellow);
+  padding:28px 24px 24px;
+}
+.field{
+  margin:0 0 16px;
+}
+.field label{
+  display:block;
+  font-family:var(--font-display);
+  font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--leaf-green-deep);
+  margin:0 0 8px;
+}
+.field .optional{
+  font-family:var(--font-body);
+  font-size:13px;
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--blue-slate);
+}
+.field input{
+  width:100%;
+  padding:14px 16px;
+  font-family:var(--font-body);
+  font-size:18px;
+  border:1px solid var(--card-border);
+  border-radius:var(--radius-field);
+  background:var(--cream-tint);
+  color:var(--near-black);
+}
+.field input:focus{
+  outline:2px solid var(--link);
+  outline-offset:2px;
+  background:var(--white);
+}
+.btn{
+  display:inline-block;
+  border:none;cursor:pointer;
+  background:var(--bus-yellow);
+  color:var(--near-black);
+  font-family:var(--font-display);
+  font-size:20px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  padding:18px 38px;
+  border-radius:var(--radius-button);
+  border-bottom:var(--button-edge);
+  text-decoration:none;
+  transition:background var(--transition-button), transform var(--transition-button);
+  width:100%;
+  text-align:center;
+}
+.btn:hover{background:var(--bus-yellow-light);transform:translateY(-2px)}
+.gate-msg{
+  margin:14px 0 0;
+  font-size:15px;
+  color:#8B3A2A;
+  min-height:1.2em;
+}
+.fineprint{
+  margin:20px 0 0;
+  font-size:14px;
+  line-height:1.45;
+  color:var(--blue-slate);
+  max-width:42ch;
+}
+
+.err{
+  max-width:var(--measure-prose);
+  margin:0 auto;
+  padding:104px 24px;
+  text-align:center;
+}
+.err h2{
+  font-size:clamp(26px, 2.8vw, 34px);
+  color:var(--near-black);
+  margin:0 0 16px;
+}
+.err p{color:var(--blue-slate);margin:0 0 28px}
+
+@media(max-width:520px){
+  .hero{padding:56px 20px 72px}
+  .btn{padding:16px 24px;font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<section id="gate" class="hidden">
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Parent Report Card</p>
+      <h1>See your results</h1>
+      <p class="lede">Enter your email to unlock your mark and what’s showing up — and get a short follow-up with next steps.</p>
+      <form class="gate-card" id="emailForm" novalidate>
+        <div class="field">
+          <label for="emailField">Email</label>
+          <input type="email" id="emailField" name="email" placeholder="your@email.com" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="nameField">First name <span class="optional">(optional)</span></label>
+          <input type="text" id="nameField" name="name" placeholder="First name" autocomplete="given-name">
+        </div>
+        <button class="btn" type="submit">Show my results</button>
+        <p class="gate-msg" id="gateMsg" role="alert"></p>
+      </form>
+      <p class="fineprint">We won’t spam you. Unsubscribe anytime. Not therapy or a diagnosis.</p>
+    </div>
+  </div>
+</section>
+
+<section id="noScore" class="hidden">
+  <div class="err">
+    <h2>Take the quiz first</h2>
+    <p>Your results aren’t ready yet. Start the Parent Report Card to get your mark.</p>
+    <a class="btn" href="index.html" style="max-width:320px;display:inline-block">Take the quiz</a>
+  </div>
+</section>
+
+<script>
+const RESULT_PAGE = "result.html";
+
+function getScoreParam(){
+  const raw = new URLSearchParams(location.search).get('s');
+  if(!raw) return null;
+  const parts = raw.split(',').map(x => parseInt(x, 10));
+  if(parts.length !== 10 || parts.some(n => Number.isNaN(n) || n < 0 || n > 10)) return null;
+  return raw;
+}
+
+function isValidEmail(email){
+  // Simple client-side check; not a full RFC validator.
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function init(){
+  const scoreStr = getScoreParam();
+  if(!scoreStr){
+    document.getElementById('noScore').classList.remove('hidden');
+    return;
+  }
+  document.getElementById('gate').classList.remove('hidden');
+
+  const form = document.getElementById('emailForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const email = (document.getElementById('emailField').value || '').trim();
+    const name = (document.getElementById('nameField').value || '').trim();
+    const msg = document.getElementById('gateMsg');
+
+    if(!isValidEmail(email)){
+      msg.textContent = 'Enter a valid email to continue.';
+      document.getElementById('emailField').focus();
+      return;
+    }
+
+    // Stub: persist for later Mailchimp wiring.
+    // TODO: Mailchimp embed or API
+    try {
+      sessionStorage.setItem('prc_email', email);
+      if(name) sessionStorage.setItem('prc_name', name);
+      else sessionStorage.removeItem('prc_name');
+    } catch (err) {
+      // sessionStorage may be blocked; still allow results.
+    }
+
+    window.location.href = RESULT_PAGE + '?s=' + scoreStr;
+  });
+}
+
+init();
+</script>
+</body>
+</html>
